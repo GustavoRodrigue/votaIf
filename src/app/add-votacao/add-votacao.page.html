@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" (click)="votacao()">
+      <ion-button>
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Adicionar Votacao</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">
+      Nome
+    </ion-label>
+    <ion-input [(ngModel)]="nome"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">
+      Descricao
+    </ion-label>
+    <ion-input [(ngModel)]="descricao"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">
+      Tipo
+    </ion-label>
+    <ion-input [(ngModel)]="tipo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">
+      Data Inicio  
+    </ion-label>
+    <br>
+    <ion-input type="date" [(ngModel)]="inicio"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">
+      Data Terminio
+    </ion-label>
+  <br>
+    <ion-input type="date" [(ngModel)]="terminio"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Curso</ion-label>
+    <ion-select placeholder="Selecione" name="curso" [(ngModel)]="curso">
+      <ion-select-option *ngFor="let curso of cursos" [value]="curso.id"> {{curso.nome }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Turma</ion-label>
+    <ion-select placeholder="Selecione" name="turma" [(ngModel)]="turma">
+      <ion-select-option *ngFor="let turma of turmas" [value]="turma.id"> {{turma.nome }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button *ngIf="!id" color="success" expand="block" (click)="cadastrar()">
+    Salvar
+  </ion-button>
+  <ion-button *ngIf="id" color="primary" expand="block" (click)="editar()">
+    Editar
+  </ion-button>
+</ion-content>

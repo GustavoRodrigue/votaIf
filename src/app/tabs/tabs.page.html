@@ -1,20 +1,68 @@
 <ion-tabs>
 
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="tab1">
-      <ion-icon name="triangle"></ion-icon>
-      <ion-label>Tab 1</ion-label>
+  <ion-tab-bar slot="bottom" color="primary"  >
+    <ion-tab-button tab="home" >
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Inicio</ion-label>
     </ion-tab-button>
+    <ion-tab-button tab="votacao" class="espaco1" >
+      <ion-icon name="checkmark-done"></ion-icon>
+      <ion-label>Votar</ion-label>
+    </ion-tab-button>
+    <ion-tab-button >
+      <ion-icon name=""></ion-icon>
+      <ion-label></ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="usuarios" class="espaco2">
+      <ion-icon name="people"></ion-icon>
+      <ion-label>Usuários</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="conta">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Conta</ion-label>
+    </ion-tab-button>
+    <!-- <ion-tab-button tab="cursos">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Curso</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="turmas">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Turma</ion-label>
+    </ion-tab-button> -->
+    
 
-    <ion-tab-button tab="tab2">
-      <ion-icon name="ellipse"></ion-icon>
-      <ion-label>Tab 2</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="tab3">
-      <ion-icon name="square"></ion-icon>
-      <ion-label>Tab 3</ion-label>
-    </ion-tab-button>
+    
   </ion-tab-bar>
-
+ 
 </ion-tabs>
+
+      
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed"  class="embaixo">
+      <ion-fab-button>
+        <!-- <ion-icon name="share"></ion-icon> -->
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top" (click)="cursos()" >
+        <ion-fab-button color="primary">
+          <ion-icon name="albums"></ion-icon>
+        </ion-fab-button>
+        <ion-label>Curso</ion-label>
+      </ion-fab-list>
+      <!-- <ion-fab-list side="bottom">
+        <ion-fab-button><ion-icon name="logo-facebook"></ion-icon></ion-fab-button>
+      </ion-fab-list> -->
+      <ion-fab-list side="start" (click)="turmas()">
+        <ion-fab-button color="primary">
+            <ion-icon name="bookmarks"></ion-icon>
+        </ion-fab-button>
+        <ion-label class="turmas">Turmas</ion-label>
+      </ion-fab-list>
+      <ion-fab-list side="end" >
+        <ion-fab-button color="primary">
+          <ion-icon name="person">
+
+          </ion-icon>
+        </ion-fab-button>
+        <ion-label class="label2">Teste</ion-label>
+      </ion-fab-list>
+    </ion-fab>
