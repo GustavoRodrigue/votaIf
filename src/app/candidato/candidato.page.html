@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" (click)="turmas()">
+      <ion-button >
+        <ion-icon  name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="!id">Adicionar Candidatos</ion-title>
+    <ion-title *ngIf="id">Editar Candidatos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let entry of form">
+      <ion-label>{{entry.val}}</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label>Curso</ion-label>
+      <ion-select  placeholder="Selecione" [name]="idCurso" [(ngModel)]="idCurso"  >
+        <ion-select-option   *ngFor="let curso of cursos"  [value]="curso.id" >{{curso.nome }}</ion-select-option>
+      </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Turmas</ion-label>
+      <ion-select  placeholder="Selecione" [name]="idCurso" [(ngModel)]="idCurso"  >
+        <ion-select-option   *ngFor="let curso of cursos"  [value]="curso.id" >{{curso.nome }}</ion-select-option>
+      </ion-select>
+  </ion-item>
+  
+  <ion-button *ngIf="!id" color="success" expand="block" (click)="cadastrar()">
+    Salvar
+  </ion-button>
+  <ion-button *ngIf="id" color="primary" expand="block" (click)="editar()">
+    Editar
+  </ion-button>
+
+</ion-content>

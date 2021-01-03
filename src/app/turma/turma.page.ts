@@ -34,6 +34,9 @@ export class TurmaPage implements OnInit {
   addTurmas() {
     this.router.navigate(['/add-turmas'])
   }
+  mais(){
+    this.router.navigate(['/tabs/mais'])
+  }
 
   carregar() {
     return new Promise(resolve => {

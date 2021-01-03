@@ -12,7 +12,7 @@ import { async } from '@angular/core/testing';
 export class AddCursosPage implements OnInit {
 
   id: string = "";
-  nome: string = "";
+  nome: string = ""; 
 
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
 

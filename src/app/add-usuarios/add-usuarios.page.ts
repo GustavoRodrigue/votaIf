@@ -105,7 +105,7 @@ export class AddUsuariosPage implements OnInit {
         limit: this.limit,
         start: this.start
       };
-      this.provider.dadosApi(dados, 'api.php').subscribe(data => {
+      this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
         if (data['result'] == '0') {
 
           this.ionViewWillEnter();
@@ -130,7 +130,7 @@ export class AddUsuariosPage implements OnInit {
         limit: this.limit,
         start: this.start
       };
-      this.provider.dadosApi(dados, 'api.php').subscribe(data => {
+      this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
         if (data['result'] == '0') {
 
           this.ionViewWillEnter();

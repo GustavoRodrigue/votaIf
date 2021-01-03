@@ -55,20 +55,20 @@ export class LoginPage implements OnInit {
       if (data['success']) {
         this.storage.setItem('session_storage', data['result']);
         this.router.navigate(['/tabs/home']);
-        if(data['result']['nivel'] === 'Admin'){
-          this.router.navigate([ '/tabs/home']);
-        }else if(data['result']['nivel'] === 'aluno'){
+        // if(data['result']['nivel'] === 'Admin'){
+        //   this.router.navigate([ '/tabs/home']);
+        // }else if(data['result']['nivel'] === 'aluno'){
        
-          this.router.navigate([ 'tabs/votacao']);
+        //   this.router.navigate([ 'tabs/votacao']);
 
-        }else if(data['result']['nivel'] === 'servidor'){
-          this.router.navigate([ 'tabs/usuarios']);
-          this.router.navigate([ 'tabs/votacao']);
+        // }else if(data['result']['nivel'] === 'servidor'){
+        //   this.router.navigate([ 'tabs/usuarios']);
+        //   this.router.navigate([ 'tabs/votacao']);
 
-        }else if(data['result']['nivel'] === 'professor'){
-          this.router.navigate([ '/usuarios']);
-          this.router.navigate([ '/votacao']);
-        }
+        // }else if(data['result']['nivel'] === 'professor'){
+        //   this.router.navigate([ '/usuarios']);
+        //   this.router.navigate([ '/votacao']);
+        // }
 
 
 

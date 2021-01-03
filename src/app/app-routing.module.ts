@@ -78,6 +78,18 @@ const routes: Routes = [
     path: 'mostrar-votacao/:id/:nome/:descricao/:tipo/:inicio/:terminio/:status/:curso/:turma',
     loadChildren: () => import('./mostrar-votacao/mostrar-votacao.module').then( m => m.MostrarVotacaoPageModule)
   },
+  {
+    path: 'mais',
+    loadChildren: () => import('./mais/mais.module').then( m => m.MaisPageModule)
+  },
+  {
+    path: 'candidato',
+    loadChildren: () => import('./candidato/candidato.module').then( m => m.CandidatoPageModule)
+  },
+  {
+    path: 'tabs-aluno',
+    loadChildren: () => import('./tabs-aluno/tabs-aluno.module').then( m => m.TabsAlunoPageModule)
+  },
 
 ];
 @NgModule({

@@ -33,6 +33,9 @@ export class CursoPage implements OnInit {
   addCursos() {
     this.router.navigate(['/add-cursos'])
   }
+  mais(){
+    this.router.navigate(['/tabs/mais'])
+  }
 
   carregar() {
     return new Promise(resolve => {

@@ -33,14 +33,28 @@
       Data Inicio  
     </ion-label>
     <br>
-    <ion-input type="date" [(ngModel)]="inicio"></ion-input>
+    <ion-input type="date" [(ngModel)]="inicio"><ion-icon name="calendar"></ion-icon></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">
+      Hora Inicio  
+    </ion-label>
+    <br>
+    <ion-input type="time" [(ngModel)]="hora_inicio"><ion-icon name="time"></ion-icon></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">
       Data Terminio
     </ion-label>
   <br>
-    <ion-input type="date" [(ngModel)]="terminio"></ion-input>
+    <ion-input type="date" [(ngModel)]="terminio"><ion-icon name="calendar"></ion-icon></ion-input> 
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">
+      Hora terminio  
+    </ion-label>
+    <br>
+    <ion-input type="time" [(ngModel)]="hora_terminio"><ion-icon name="time"></ion-icon>  </ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Curso</ion-label>

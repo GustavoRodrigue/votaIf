@@ -18,4 +18,7 @@ export class ContaPage implements OnInit {
     this.storage.clear();
     this.router.navigate(['/login']); 
   }
+  mais(){
+    this.router.navigate(['/tabs/mais'])
+  }
 }

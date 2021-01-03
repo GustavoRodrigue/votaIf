@@ -1,8 +1,11 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+    <ion-buttons slot="start" (click)="mais()">
+      <ion-button >
+        <ion-icon  name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
+    
     <ion-title>Cursos</ion-title>
     <ion-buttons slot="primary" (click)="addCursos()">
       <ion-button>Novo

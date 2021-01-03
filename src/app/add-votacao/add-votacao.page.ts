@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../../services/post';
 import { ToastController } from '@ionic/angular';
+import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-add-votacao',
@@ -16,8 +17,10 @@ export class AddVotacaoPage implements OnInit {
   nome: string = "";
   descricao: string = "";
   tipo: string = "";
-  inicio: string = "";
-  terminio: number = 0;
+  inicio: Date;
+  hora_inicio: Time;
+  terminio: Date;
+  hora_terminio: Time;
   status: string = "Aberta";
   curso: number = 0;
   turma: number = 0;
@@ -51,7 +54,9 @@ export class AddVotacaoPage implements OnInit {
       this.descricao = data.descricao;
       this.tipo = data.tipo;
       this.inicio = data.inicio;
-      this.terminio = data.terminio
+      this.hora_inicio = data.hora_inicio;
+      this.terminio = data.terminio;
+      this.hora_terminio = data.hora_terminio;
       this.curso = data.curso;
       this.turma = data.turma;
 
@@ -61,26 +66,42 @@ export class AddVotacaoPage implements OnInit {
   votacao() {
     this.router.navigate(['tabs/votacao'])
   }
-  cadastrar() {
-    return new Promise(resolve => {
-      let dados = {
-        requisicao: 'add-votacao',
-        nome: this.nome,
-        descricao: this.descricao,
-        tipo: this.tipo,
-        inicio: this.inicio,
-        terminio: this.terminio,
-        status: this.status,
-        curso: this.curso,
-        turma: this.turma
-      };
-      this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+  async cadastrar() {
 
-        this.router.navigate(['/usuarios']);
-        this.router.navigate(['tabs/votacao']);
-        this.mensagemSalvar();
+    if (!this.nome || !this.descricao || !this.tipo || !this.inicio || !this.hora_inicio 
+          || !this.hora_terminio || !this.curso || !this.turma) {
+
+      const toast = await this.toastController.create({
+        message: 'Aviso! Preencha todos os campos!',
+        duration: 2000,
+        color: 'warning'
       });
-    });
+      toast.present();
+
+      return;
+    } else {
+      return new Promise(resolve => {
+        let dados = {
+          requisicao: 'add-votacao',
+          nome: this.nome,
+          descricao: this.descricao,
+          tipo: this.tipo,
+          inicio: this.inicio,
+          hora_inicio: this.hora_inicio,
+          terminio: this.terminio,
+          hora_terminio: this.hora_terminio,
+          status: this.status,
+          curso: this.curso,
+          turma: this.turma
+        };
+        this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+
+          this.router.navigate(['/usuarios']);
+          this.router.navigate(['tabs/votacao']);
+          this.mensagemSalvar();
+        });
+      });
+    }
   }
   editar() {
     return new Promise(resolve => {
@@ -91,7 +112,9 @@ export class AddVotacaoPage implements OnInit {
         descricao: this.descricao,
         tipo: this.tipo,
         inicio: this.inicio,
+        hora_inicio: this.hora_inicio,
         terminio: this.terminio,
+        hora_terminio: this.hora_terminio,
         status: this.status,
         curso: this.curso,
         turma: this.turma

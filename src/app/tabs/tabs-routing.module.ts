@@ -33,6 +33,10 @@ const routes: Routes = [
         loadChildren: () => import('../turma/turma.module').then(m => m.TurmaPageModule)
       },
       {
+        path: 'mais',
+        loadChildren: () => import('../mais/mais.module').then(m => m.MaisPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'
