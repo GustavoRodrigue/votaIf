@@ -13,6 +13,8 @@ export class LoginPage implements OnInit {
 
   email: string = "";
   senha: string = "";
+  nivel: string;
+ 
 
   constructor(private storage: NativeStorage, private router: Router, private provider: Post, public toast: ToastController) { }
 
@@ -46,7 +48,8 @@ export class LoginPage implements OnInit {
     let dados = {
       requisicao: 'login',
       email: this.email,
-      senha: this.senha
+      senha: this.senha,
+      
 
     };
 
@@ -54,21 +57,23 @@ export class LoginPage implements OnInit {
       var alert = data['msg'];
       if (data['success']) {
         this.storage.setItem('session_storage', data['result']);
-        this.router.navigate(['/tabs/home']);
-        // if(data['result']['nivel'] === 'Admin'){
-        //   this.router.navigate([ '/tabs/home']);
-        // }else if(data['result']['nivel'] === 'aluno'){
+      //  this.router.navigate(['/tabs/home']);
+        
+        
+        if(data['result']['nivel'] == 'admin'){
+          this.router.navigate(['/tabs/home']);
+        }else if(data['result']['nivel'] == 'aluno'){
        
-        //   this.router.navigate([ 'tabs/votacao']);
+          this.router.navigate([ 'tabs/votacao']);
 
-        // }else if(data['result']['nivel'] === 'servidor'){
-        //   this.router.navigate([ 'tabs/usuarios']);
-        //   this.router.navigate([ 'tabs/votacao']);
+        }else if(data['result']['nivel'] == 'servidor'){
+          this.router.navigate([ 'tabs/usuarios']);
+          this.router.navigate([ 'tabs/votacao']);
 
-        // }else if(data['result']['nivel'] === 'professor'){
-        //   this.router.navigate([ '/usuarios']);
-        //   this.router.navigate([ '/votacao']);
-        // }
+        }else if(data['result']['nivel'] == 'professor'){
+          this.router.navigate([ '/usuarios']);
+          this.router.navigate([ '/votacao']);
+        }
 
 
 
@@ -80,7 +85,10 @@ export class LoginPage implements OnInit {
         toast.present();
         this.email = "";
         this.senha = "";
-        console.log(data);
+        console.log(data['result']['nivel']);
+        console.log(data['result'])
+
+      
       } else {
         const toast = await this.toast.create({
           message: alert,

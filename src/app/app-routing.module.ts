@@ -90,6 +90,10 @@ const routes: Routes = [
     path: 'tabs-aluno',
     loadChildren: () => import('./tabs-aluno/tabs-aluno.module').then( m => m.TabsAlunoPageModule)
   },
+  {
+    path: 'tela-inicial',
+    loadChildren: () => import('./tela-inicial/tela-inicial.module').then( m => m.TelaInicialPageModule)
+  },
 
 ];
 @NgModule({

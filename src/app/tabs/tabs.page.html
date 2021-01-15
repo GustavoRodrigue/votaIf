@@ -1,7 +1,10 @@
-<ion-tabs>
+
+<ion-content>
+
+<ion-tabs *ngIf="nivel == 'admin'">
 
   <ion-tab-bar slot="bottom" color="primary"   >
-    <ion-tab-button tab="home" (click)="teste()">
+    <ion-tab-button tab="home">
       <ion-icon name="home"></ion-icon>
       <ion-label>Inicio</ion-label>
     </ion-tab-button>
@@ -26,7 +29,60 @@
  
 </ion-tabs>
 
+<ion-tabs *ngIf="nivel == 'aluno'">
+
+  <ion-tab-bar slot="bottom" color="primary"   >
+    <ion-tab-button tab="home">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Inicio</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="votacao" class="espaco1" >
+      <ion-icon name="checkmark-done"></ion-icon>
+      <ion-label>Votar</ion-label>
+    </ion-tab-button>
+    <ion-tab-button >
+      <ion-icon name=""></ion-icon>
+      <ion-label></ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="conta" class="espaco1" >
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Conta</ion-label>
+    </ion-tab-button>
     
+  </ion-tab-bar>
+ 
+</ion-tabs>
+
+<ion-tabs *ngIf="nivel == 'aluno'">
+
+  <ion-tab-bar slot="bottom" color="primary"   >
+    <ion-tab-button tab="home">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Inicio</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="votacao" class="espaco1" >
+      <ion-icon name="checkmark-done"></ion-icon>
+      <ion-label>Votar</ion-label>
+    </ion-tab-button>
+    <ion-tab-button >
+      <ion-icon name=""></ion-icon>
+      <ion-label></ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="usuarios" class="espaco2">
+      <ion-icon name="people"></ion-icon>
+      <ion-label>Usuários</ion-label>
+     </ion-tab-button>
+    <ion-tab-button tab="mais">
+      <ion-icon name="ellipsis-horizontal"></ion-icon>
+      <ion-label>Mais</ion-label>
+    </ion-tab-button> 
+    
+  </ion-tab-bar>
+ 
+</ion-tabs>
+    
+
+
   <ion-fab vertical="bottom" horizontal="center" slot="fixed"  >
       <ion-fab-button>
        

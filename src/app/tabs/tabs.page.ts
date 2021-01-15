@@ -16,6 +16,8 @@ export class TabsPage {
   urlCursos:string = "cursos";
   nivel : string;
   dadosLogin : any;
+  nome: string;
+
   
 
   constructor(private storage: NativeStorage, private router: Router, private provider: Post, public toast: ToastController) { 
@@ -43,24 +45,7 @@ export class TabsPage {
     console.log(this.nivel)
   }
 
-  carregar(){
-    return new Promise(resolve => {
-      
-      let dados = {
-        requisicao : 'listar',
-         
-         };
-
-        this.provider.dadosApi(dados, 'api.php').subscribe(data => {
-
-          if(data['success']) {
-            this.nivel = data['result']['nivel'];
-          }
-          
-          
-        
-    });
-  });
+ 
 
 }
 
@@ -85,4 +70,4 @@ export class TabsPage {
 //     }
 //   }
     
-}
+
