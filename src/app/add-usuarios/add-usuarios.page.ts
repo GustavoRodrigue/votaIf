@@ -70,8 +70,8 @@ export class AddUsuariosPage implements OnInit {
       };
       this.provider.dadosApi(dados, 'api.php').subscribe(data => {
       
-        this.router.navigate(['/usuarios']);
-        this.router.navigate(['tabs/usuarios']);
+        this.router.navigate(['/login']);
+       // this.router.navigate(['tabs/usuarios']);
         this.mensagemSalvar();
       });
     });

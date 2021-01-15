@@ -94,6 +94,10 @@ const routes: Routes = [
     path: 'tela-inicial',
     loadChildren: () => import('./tela-inicial/tela-inicial.module').then( m => m.TelaInicialPageModule)
   },
+  {
+    path: 'aprovar-usuarios',
+    loadChildren: () => import('./aprovar-usuarios/aprovar-usuarios.module').then( m => m.AprovarUsuariosPageModule)
+  },
 
 ];
 @NgModule({
