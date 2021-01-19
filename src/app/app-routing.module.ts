@@ -8,8 +8,8 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'usuarios',
-    loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
+    path: 'alunos',
+    loadChildren: () => import('./alunos/alunos.module').then( m => m.AlunosPageModule)
   },
   {
     path: 'home',
@@ -93,6 +93,18 @@ const routes: Routes = [
   {
     path: 'tela-inicial',
     loadChildren: () => import('./tela-inicial/tela-inicial.module').then( m => m.TelaInicialPageModule)
+  },
+  {
+    path: 'nivel-usuarios',
+    loadChildren: () => import('./nivel-usuarios/nivel-usuarios.module').then( m => m.NivelUsuariosPageModule)
+  },
+  {
+    path: 'professor',
+    loadChildren: () => import('./professor/professor.module').then( m => m.ProfessorPageModule)
+  },
+  {
+    path: 'servidor',
+    loadChildren: () => import('./servidor/servidor.module').then( m => m.ServidorPageModule)
   },
  
 ];

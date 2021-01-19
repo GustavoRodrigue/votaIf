@@ -4,11 +4,11 @@ import { Post } from 'src/services/post';
 import { ToastController, AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.page.html',
-  styleUrls: ['./usuarios.page.scss'],
+  selector: 'app-alunos',
+  templateUrl: './alunos.page.html',
+  styleUrls: ['./alunos.page.scss'],
 })
-export class UsuariosPage implements OnInit {
+export class AlunosPage implements OnInit {
 
   usuarios: any = [];
   limit: number = 15;

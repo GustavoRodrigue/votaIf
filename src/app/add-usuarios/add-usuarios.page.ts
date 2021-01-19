@@ -56,7 +56,7 @@ export class AddUsuariosPage implements OnInit {
     
   }
   usuarios() {
-    this.router.navigate(['tabs/usuarios'])
+    this.router.navigate(['/tela-inicial'])
   }
   cadastrar() {
     return new Promise(resolve => {
