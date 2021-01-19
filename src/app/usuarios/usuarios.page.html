@@ -9,7 +9,7 @@
   <ion-row color="medium">
     <ion-segment (ionChange)="segmentChanged($event)" value="aguardando">
       <ion-segment-button value="aguardando">
-        <ion-label>Aguardandos</ion-label>
+        <ion-label>Aguardando</ion-label>
       </ion-segment-button>
       <ion-segment-button value="aprovado">
         <ion-label>Aprovadas</ion-label>
@@ -42,14 +42,14 @@
         </ion-item-option>
       </ion-item-options>
       <ion-item>
-        <ion-label>{{usuario.nome }}|'   '|{{usuario.status}}</ion-label>
+        <ion-label>{{usuario.nome }}</ion-label>|<small>{{usuario.nomeCurso}}</small>|<small>{{usuario.nomeTurma}}</small>
       </ion-item>
-      <!-- <ion-item-options side="end">
+      <ion-item-options side="end">
 
         <ion-item-option (click)="presentAlertConfirm(usuario.id)" color="danger">
           Excluir
         </ion-item-option>
-      </ion-item-options> -->
+      </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 

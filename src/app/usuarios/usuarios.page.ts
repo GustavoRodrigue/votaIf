@@ -18,6 +18,8 @@ export class UsuariosPage implements OnInit {
   senha: string ="";
   nivel: string ="";
   idCurso: string = "";
+  nomeCurso: string = "";
+  nomeTurma: string ="";
   idTurma: string = "";
   status : boolean ;
   selecionado: string;
@@ -61,6 +63,8 @@ export class UsuariosPage implements OnInit {
         senha: this.senha,
         idCurso: this.idCurso,
         idTurma: this.idTurma,
+        nomeCurso: this.nomeCurso,
+        nomeTruma: this.nomeTurma,
         nivel: this.nivel,
         status: this.status,
         limit: this.limit,
@@ -94,7 +98,7 @@ export class UsuariosPage implements OnInit {
     return new Promise(resolve => {
       
       let dados = {
-        requisicao : 'aprovar_usuario',
+        requisicao : 'aprovar_usuarios',
         id : id, 
         
         };
