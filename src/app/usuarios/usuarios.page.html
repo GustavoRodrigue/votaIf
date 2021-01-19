@@ -4,16 +4,23 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Usuários</ion-title>
-    <ion-buttons slot="primary" (click)="addUsuarios()">
-      <ion-button >Novo
-        <ion-icon slot="end" name="add"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    
   </ion-toolbar>
+  <ion-row color="medium">
+    <ion-segment (ionChange)="segmentChanged($event)" value="aguardando">
+      <ion-segment-button value="aguardando">
+        <ion-label>Aguardandos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="aprovado">
+        <ion-label>Aprovadas</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-row>
 </ion-header>
 
-<ion-row class="azul-primary padding-lateral">
-  
+<!-- <ion-row class="azul-primary padding-lateral">
+
   <ion-input placeholder="Buscar" [(ngModel)]="nome" type="search" (input)="carregar()"></ion-input>
 
 
@@ -23,40 +30,37 @@
     </ion-button>
   </ion-buttons>
 
-</ion-row>
+</ion-row> -->
 
-<ion-content class="cinza-claro"  >
-<ion-list  >
-  <ion-item-sliding *ngFor=" let usuario of usuarios" >
-    <ion-item-options side="start">
-      <ion-item-option (click)="editar(usuario.id, usuario.nome, usuario.email, usuario.senha_original, usuario.curso, usuario.turma, usuario.nivel)">
-        Editar
-      </ion-item-option>
-    </ion-item-options>
-    <ion-item><ion-label>{{usuario.nome}}</ion-label></ion-item>
-    <ion-item-options side="end">
-     
-      <ion-item-option (click)="presentAlertConfirm(usuario.id)" color="danger">
-        Excluir
-      </ion-item-option>
-    </ion-item-options>
-  </ion-item-sliding>
-</ion-list>
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor=" let usuario of usuarios">
+      <ion-item-options side="start">
+        <ion-item-option
+          (click)="aprovar(usuario.id)">
+          Aprovar
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item>
+        <ion-label>{{usuario.nome }}|'   '|{{usuario.status}}</ion-label>
+      </ion-item>
+      <!-- <ion-item-options side="end">
 
-<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-  <ion-refresher-content
-    pullingIcon="arrow-dropdown"
-    
-    refreshingSpinner="circles"
-    refreshingText="Carregando...">
-  </ion-refresher-content>
-</ion-refresher>
+        <ion-item-option (click)="presentAlertConfirm(usuario.id)" color="danger">
+          Excluir
+        </ion-item-option>
+      </ion-item-options> -->
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
 
 
-<ion-infinite-scroll  (ionInfinite)="loadData($event)">
-<ion-infinite-scroll-content
-  loadingSpinner="bubbles"
-  loadingText="Carregando mais dados">
-</ion-infinite-scroll-content>
-</ion-infinite-scroll>
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

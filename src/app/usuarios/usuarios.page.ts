@@ -19,7 +19,8 @@ export class UsuariosPage implements OnInit {
   nivel: string ="";
   idCurso: string = "";
   idTurma: string = "";
-
+  status : boolean ;
+  selecionado: string;
 
   constructor(private router: Router, private provider: Post, public toastController: ToastController, public alertController: AlertController) {
     
@@ -35,9 +36,20 @@ export class UsuariosPage implements OnInit {
     this.carregar();
   }
 
-  addUsuarios() {
-    this.router.navigate(['/add-usuarios']);
-  }
+  segmentChanged(event) {
+      
+    this.selecionado = event.target.value;
+   if(this.selecionado == "aguardando"){
+     this.status = false;
+     this.carregar();
+   } else if(this.selecionado == "aprovado"){
+     this.status = true;
+     this.carregar();
+   
+   }
+ }
+
+
 
   carregar() {
     return new Promise(resolve => {
@@ -50,6 +62,7 @@ export class UsuariosPage implements OnInit {
         idCurso: this.idCurso,
         idTurma: this.idTurma,
         nivel: this.nivel,
+        status: this.status,
         limit: this.limit,
         start: this.start
       };
@@ -61,6 +74,7 @@ export class UsuariosPage implements OnInit {
         } else {
           for (let usuario of data['result']) {
             this.usuarios.push(usuario);
+            
     
           }
         }
@@ -69,12 +83,26 @@ export class UsuariosPage implements OnInit {
       });
     });
   }
-  editar(id, nome, email, senha, curso, turma, nivel) {
-    this.router.navigate(['add-usuarios/' + id + '/' + nome + '/' + email + '/' + senha + '/' + curso + '/' + turma + '/' + nivel]);
+  editar(id, nome, email, senha, curso, turma, status, nivel) {
+    this.router.navigate(['add-usuarios/' + id + '/' + nome + '/' + email + '/' + senha + '/' + curso + '/' + turma + '/' + status + '/' + nivel]);
   }
 
   mostrar(id, nome, email, senha, nivel) {
     this.router.navigate(['mostrar-usuarios/' + id + '/' + nome + '/' + email + '/' + senha + '/' + nivel]);
+  }
+  aprovar(id){
+    return new Promise(resolve => {
+      
+      let dados = {
+        requisicao : 'aprovar_usuario',
+        id : id, 
+        
+        };
+
+        this.provider.dadosApi(dados, 'api.php').subscribe(data => {
+         this.ionViewWillEnter();
+        });
+    });
   }
 
   excluir(id) {

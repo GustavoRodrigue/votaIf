@@ -21,6 +21,7 @@ export class AddUsuariosPage implements OnInit {
   turma: number = 0;
   nomeCurso: string = "";
   nomeTurma: string = "";
+  status: string = "aguardando";
   limit: number = 15;
   start: number = 0;
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post,  public toastController: ToastController) { }
@@ -66,7 +67,8 @@ export class AddUsuariosPage implements OnInit {
         senha: this.senha,
         curso: this.curso,
         turma: this.turma,
-        nivel: this.nivel
+        nivel: this.nivel,
+        status: this.status
       };
       this.provider.dadosApi(dados, 'api.php').subscribe(data => {
       
@@ -86,7 +88,8 @@ export class AddUsuariosPage implements OnInit {
         senha: this.senha,
         curso: this.curso,
         turma: this.turma,
-        nivel: this.nivel
+        nivel: this.nivel,
+        status: this.status
       };
       this.provider.dadosApi(dados, 'api.php').subscribe(data => {
         this.router.navigate(['/usuarios']);

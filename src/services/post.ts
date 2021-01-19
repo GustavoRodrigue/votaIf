@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class Post{
   //server: string = 'http://localhost/apivotacao/';
-  server: string = 'http://192.168.1.103/apivotacao/';
+  server: string = 'http://192.168.1.102/apivotacao/';
 
   //server: string = 'http://portal.hugocursos.com.br/api/';
 

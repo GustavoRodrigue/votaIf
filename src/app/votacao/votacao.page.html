@@ -11,15 +11,7 @@
     </ion-buttons>
 
   </ion-toolbar>
-  <!-- <ion-row class="preto">
-    <ion-input placeholder="Buscar" [(ngModel)]="curso" type="search" (ionChange)="carregar()"></ion-input>   
-    <ion-buttons (click)="carregar()">
-      <ion-button>
-        <ion-icon slot="end" name="search"></ion-icon>
-      </ion-button>
-      <ion-toggle color="secondary" ></ion-toggle>
-    </ion-buttons>[(ngModel)]="status" (ionChange)="carregar()"
-  </ion-row> -->
+ 
   <ion-row color="medium">
     <ion-segment (ionChange)="segmentChanged($event)" value="aberta">
       <ion-segment-button value="aberta">
@@ -45,83 +37,11 @@
         </ion-item-option>
       </ion-item-options>
       <ion-item><ion-label>{{votacao.nome}}</ion-label></ion-item>
-      <!-- <ion-item-options side="end">
-       
-        <ion-item-option (click)="presentAlertConfirm(usuario.id)" color="danger">
-          Excluir
-        </ion-item-option>
-      </ion-item-options> -->
+    
     </ion-item-sliding>
   </ion-list>
 
-  <!-- <ion-list *ngFor="let votacao of votacoes" >
-   
-    <ion-card *ngIf="selecionado == 'aberta'">
-      <ion-card-header>
-        <ion-card-title>
-          <ion-icon name="square" color="danger" *ngIf="votacao.status === 'Encerrada'"></ion-icon>
-          <ion-icon name="square" color="success" *ngIf="votacao.status === 'Aberta'"></ion-icon>
-          <b> {{votacao.nome}}</b>
-        </ion-card-title>
-        <ion-card-subtitle color="danger">{{votacao.inicio}} | {{votacao.terminio}}</ion-card-subtitle>
-
-        <ion-label>{{votacao.tipo}}</ion-label>
-      </ion-card-header>
-
-      <ion-card-content>
-        {{votacao.descricao}}
-      </ion-card-content>
-      <ion-item>
-
-        <ion-button title="Teste" fill="outline" slot="end" expand="block">Votar</ion-button>
-      </ion-item>
-    </ion-card>
-   
-    <ion-card *ngIf="selecionado == 'encerrada'" >
-        <ion-card-header>
-          <ion-card-title>
-            <ion-icon name="square" color="danger" *ngIf="votacao.status === 'Encerrada'"></ion-icon>
-            <ion-icon name="square" color="success" *ngIf="votacao.status === 'Aberta'"></ion-icon>
-            <b> {{votacao.nome}}</b>
-          </ion-card-title>
-          <ion-card-subtitle color="danger">{{votacao.inicio}} | {{votacao.terminio}}</ion-card-subtitle>
-  
-          <ion-label>{{votacao.tipo}}</ion-label>
-        </ion-card-header>
-  
-        <ion-card-content>
-          {{votacao.descricao}}
-        </ion-card-content>
-        <ion-item>
-  
-          <ion-button fill="outline" slot="end" expand="block">Votar</ion-button>
-        </ion-item>
-      </ion-card>
-     
-      
-      <ion-card *ngIf="selecionado == 'todas'" >
-          <ion-card-header>
-            <ion-card-title>
-              <ion-icon name="square" color="danger" *ngIf="votacao.status === 'Encerrada'"></ion-icon>
-              <ion-icon name="square" color="success" *ngIf="votacao.status === 'Aberta'"></ion-icon>
-              <b> {{votacao.nome}}</b>
-            </ion-card-title>
-            <ion-card-subtitle color="danger">{{votacao.inicio}} | {{votacao.terminio}}</ion-card-subtitle>
-    
-            <ion-label>{{votacao.tipo}}</ion-label>
-          </ion-card-header>
-    
-          <ion-card-content>
-            {{votacao.descricao}}
-          </ion-card-content>
-          <ion-item>
-    
-            <ion-button fill="outline" slot="end" expand="block">Votar</ion-button>
-          </ion-item>
-        </ion-card>
-
-  </ion-list> -->
-
+ 
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">

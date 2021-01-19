@@ -20,9 +20,9 @@ export class VotacaoPage implements OnInit {
   statusVotacao: number =0;
   
 
-  aberta: boolean = true;
-  encerrada: boolean = false;
-  todas: boolean = false;
+  // aberta: boolean = true;
+  // encerrada: boolean = false;
+  // todas: boolean = false;
   
   selecionado: string;
   
