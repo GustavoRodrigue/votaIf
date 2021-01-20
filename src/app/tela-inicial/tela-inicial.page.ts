@@ -16,8 +16,8 @@ export class TelaInicialPage implements OnInit {
     this.router.navigate(['/login'])
   }
 
-  usuarios(){
-    this.router.navigate(['/add-alunos'])
+  alunos(){
+    this.router.navigate(['/nivel-usuarios'])
   }
 
 }

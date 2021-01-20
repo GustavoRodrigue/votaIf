@@ -5,5 +5,34 @@
 </ion-header>
 
 <ion-content>
+  <div class="list-form">
+    <div >
+      <div class="logo"></div>
+     
+          <ion-img class="img-login center"  src="../assets/test.png"></ion-img>
 
+      
+    </div>
+    <div class="texto">
+      <h2>Atenção!</h2>
+      <p>Escolha a opção de acordo com sua função no campos!</p>
+
+    </div>
+    <div>
+      <ion-button icon-left size="medium" expand="block" shape="round" color="primary" (click)="alunos()"  tappable>     
+        Alunos
+      </ion-button>
+    </div><br/>
+    <div>
+      <ion-button icon-left size="medium" expand="full" shape="round" color="success" (click)="professor()"  tappable>
+        Professor
+      </ion-button>
+    </div>
+    <!-- <div>
+      <ion-button icon-left size="medium" expand="full" shape="round" color="success" (click)="servidor()"  tappable> 
+        Servidor
+      </ion-button>
+    </div> -->
+    
+  </div>
 </ion-content>

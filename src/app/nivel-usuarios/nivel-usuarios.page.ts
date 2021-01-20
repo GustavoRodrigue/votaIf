@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nivel-usuarios',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NivelUsuariosPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+  alunos(){
+    this.router.navigate(['/add-alunos'])
+  }
+  professor(){
+    this.router.navigate(['/add-professor'])
   }
 
 }
