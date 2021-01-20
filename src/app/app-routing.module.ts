@@ -106,6 +106,10 @@ const routes: Routes = [
     path: 'add-professor',
     loadChildren: () => import('./add-professor/add-professor.module').then( m => m.AddProfessorPageModule)
   },
+  {
+    path: 'add-servidor',
+    loadChildren: () => import('./add-servidor/add-servidor.module').then( m => m.AddServidorPageModule)
+  },
  
 ];
 @NgModule({

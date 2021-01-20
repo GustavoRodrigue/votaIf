@@ -13,10 +13,13 @@ export class NivelUsuariosPage implements OnInit {
   ngOnInit() {
   }
   alunos(){
-    this.router.navigate(['/add-alunos'])
+    this.router.navigate(['/add-alunos']);
   }
   professor(){
-    this.router.navigate(['/add-professor'])
+    this.router.navigate(['/add-professor']);
+  }
+  servidor(){
+    this.router.navigate(['/add-servidor']);
   }
 
 }
