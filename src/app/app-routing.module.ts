@@ -20,11 +20,11 @@ const routes: Routes = [
     loadChildren: () => import('./conta/conta.module').then( m => m.ContaPageModule)
   },
   {
-    path: 'add-usuarios',
-    loadChildren: () => import('./add-usuarios/add-usuarios.module').then( m => m.AddUsuariosPageModule)
+    path: 'add-alunos',
+    loadChildren: () => import('./add-alunos/add-alunos.module').then( m => m.AddAlunosPageModule)
   },
-  { path: 'add-usuarios/:id/:nome/:email/:senha/:curso/:turma/:nivel', 
-    loadChildren: () => import('./add-usuarios/add-usuarios.module').then( m => m.AddUsuariosPageModule)
+  { path: 'add-alunos/:id/:nome/:email/:senha/:curso/:turma/:nivel', 
+    loadChildren: () => import('./add-alunos/add-alunos.module').then( m => m.AddAlunosPageModule)
   },
   {
     path: 'login',
@@ -87,10 +87,6 @@ const routes: Routes = [
     loadChildren: () => import('./candidato/candidato.module').then( m => m.CandidatoPageModule)
   },
   {
-    path: 'tabs-aluno',
-    loadChildren: () => import('./tabs-aluno/tabs-aluno.module').then( m => m.TabsAlunoPageModule)
-  },
-  {
     path: 'tela-inicial',
     loadChildren: () => import('./tela-inicial/tela-inicial.module').then( m => m.TelaInicialPageModule)
   },
@@ -105,6 +101,10 @@ const routes: Routes = [
   {
     path: 'servidor',
     loadChildren: () => import('./servidor/servidor.module').then( m => m.ServidorPageModule)
+  },
+  {
+    path: 'add-professor',
+    loadChildren: () => import('./add-professor/add-professor.module').then( m => m.AddProfessorPageModule)
   },
  
 ];

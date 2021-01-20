@@ -4,11 +4,11 @@ import { Post } from 'src/services/post';
 import { ToastController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-add-usuarios',
-  templateUrl: './add-usuarios.page.html',
-  styleUrls: ['./add-usuarios.page.scss'],
+  selector: 'app-add-alunos',
+  templateUrl: './add-alunos.page.html',
+  styleUrls: ['./add-alunos.page.scss'],
 })
-export class AddUsuariosPage implements OnInit {
+export class AddAlunosPage implements OnInit {
 
   cursos = [];
   turmas = [];

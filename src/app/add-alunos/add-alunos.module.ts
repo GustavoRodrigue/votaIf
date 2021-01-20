@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TabsAlunoPageRoutingModule } from './tabs-aluno-routing.module';
+import { AddAlunosPageRoutingModule } from './add-alunos-routing.module';
 
-import { TabsAlunoPage } from './tabs-aluno.page';
+import { AddAlunosPage } from './add-alunos.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TabsAlunoPageRoutingModule
+    AddAlunosPageRoutingModule
   ],
-  declarations: [TabsAlunoPage]
+  declarations: [AddAlunosPage]
 })
-export class TabsAlunoPageModule {}
+export class AddAlunosPageModule {}

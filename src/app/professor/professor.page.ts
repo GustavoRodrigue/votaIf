@@ -45,6 +45,7 @@ export class ProfessorPage implements OnInit {
      this.carregar();
    
    }
+   
  }
 
 
@@ -57,7 +58,6 @@ export class ProfessorPage implements OnInit {
         nome: this.nome,
         email: this.email,
         senha: this.senha,
-       
         nivel: this.nivel,
         status: this.status,
         limit: this.limit,
@@ -77,6 +77,7 @@ export class ProfessorPage implements OnInit {
         }
 
         resolve(true);
+        
       });
     });
   }
