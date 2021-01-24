@@ -106,10 +106,11 @@ export class TurmaPage implements OnInit {
     }, 500);
   }
   async presentAlertConfirm(id) {
+    
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Aviso!!',
-      message: 'Deseja excluir ?',
+      header: 'Aviso!! ',
+      message: 'Deseja excluir?',
       buttons: [
         {
           text: 'Cancelar',

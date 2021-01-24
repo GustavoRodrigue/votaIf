@@ -16,14 +16,16 @@ export class AddAlunosPage implements OnInit {
   nome: string = "";
   email: string = "";
   senha: string = "";
-  nivel: string = "";
   curso: number = 0;
   turma: number = 0;
   nomeCurso: string = "";
   nomeTurma: string = "";
   status: string = "aguardando";
+  nivel: string = "";
+  
   limit: number = 15;
   start: number = 0;
+
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post,  public toastController: ToastController) { }
 
   async mensagemSalvar() {
@@ -55,8 +57,11 @@ export class AddAlunosPage implements OnInit {
     });
     
   }
-  usuarios() {
-    this.router.navigate(['/tela-inicial'])
+  telaInicial() {
+    // this.router.navigate(['/tela-inicial'])
+    console.log(this.nivel)
+    console.log(this.status)
+    
   }
   cadastrar() {
     return new Promise(resolve => {
@@ -67,9 +72,10 @@ export class AddAlunosPage implements OnInit {
         senha: this.senha,
         curso: this.curso,
         turma: this.turma,
-        nivel: this.nivel,
+        nivel: 'aluno',
         status: this.status
       };
+      console.log(this.nivel)
       this.provider.dadosApi(dados, 'api.php').subscribe(data => {
       
         this.router.navigate(['/login']);

@@ -1,17 +1,17 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Alunos</ion-title>
     
   </ion-toolbar>
-  <ion-row color="medium">
-    <ion-segment (ionChange)="segmentChanged($event)" value="aguardando">
+  <ion-row >
+    <ion-segment (ionChange)="segmentChanged($event)" value="aguardando" >
       <ion-segment-button value="aguardando">
         <ion-label>Aguardando</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="aprovado">
+      <ion-segment-button value="aprovado" >
         <ion-label>Aprovadas</ion-label>
       </ion-segment-button>
 
@@ -32,21 +32,21 @@
 
 </ion-row> -->
 
-<ion-content>
-  <ion-list>
-    <ion-item-sliding *ngFor=" let usuario of usuarios">
+<ion-content >
+  <ion-list color="medium">
+    <ion-item-sliding *ngFor=" let aluno of alunos" color="medium">
       <ion-item-options side="start">
         <ion-item-option
-          (click)="aprovar(usuario.id)">
+          (click)="aprovar(aluno.id)">
           Aprovar
         </ion-item-option>
       </ion-item-options>
-      <ion-item>
-        <ion-label>{{usuario.nome }}</ion-label>|<small>{{usuario.nomeCurso}}</small>|<small>{{usuario.nomeTurma}}</small>
+      <ion-item color="medium">
+        <ion-label>{{aluno.nome }}</ion-label>|<small>{{aluno.nomeCurso}}</small>|<small>{{aluno.nomeTurma}}</small>
       </ion-item>
       <ion-item-options side="end">
 
-        <ion-item-option (click)="presentAlertConfirm(usuario.id)" color="danger">
+        <ion-item-option (click)="presentAlertConfirm(aluno.id)" color="danger">
           Excluir
         </ion-item-option>
       </ion-item-options>

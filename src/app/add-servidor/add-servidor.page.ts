@@ -16,7 +16,7 @@ export class AddServidorPage implements OnInit {
   senha: string = "";
   nivel: string = "professor";
   
-  status: string = "aguardando";
+  status: string = "Aguardando";
   limit: number = 15;
   start: number = 0;
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post,  public toastController: ToastController) { }

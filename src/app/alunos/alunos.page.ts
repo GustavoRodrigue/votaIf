@@ -10,7 +10,7 @@ import { ToastController, AlertController } from '@ionic/angular';
 })
 export class AlunosPage implements OnInit {
 
-  usuarios: any = [];
+  alunos: any = [];
   limit: number = 15;
   start: number = 0;
   nome: string = "";
@@ -33,7 +33,7 @@ export class AlunosPage implements OnInit {
   
   ionViewWillEnter() {
     
-    this.usuarios = [];
+    this.alunos = [];
     this.start = 0;
     this.carregar();
   }
@@ -55,7 +55,7 @@ export class AlunosPage implements OnInit {
 
   carregar() {
     return new Promise(resolve => {
-      this.usuarios = [];
+      this.alunos = [];
       let dados = {
         requisicao: 'listar',
         nome: this.nome,
@@ -76,8 +76,8 @@ export class AlunosPage implements OnInit {
           this.ionViewWillEnter();
         
         } else {
-          for (let usuario of data['result']) {
-            this.usuarios.push(usuario);
+          for (let aluno of data['result']) {
+            this.alunos.push(aluno);
             
     
           }

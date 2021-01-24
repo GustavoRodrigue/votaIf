@@ -94,7 +94,7 @@ export class ProfessorPage implements OnInit {
       let dados = {
         requisicao : 'aprovar_professor',
         id : id, 
-        
+        nome: this.nome,
         };
 
         this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {

@@ -37,6 +37,14 @@ const routes: Routes = [
         loadChildren: () => import('../mais/mais.module').then(m => m.MaisPageModule)
       },
       {
+        path: 'professor',
+        loadChildren: () => import('../professor/professor.module').then(m => m.ProfessorPageModule)
+      },
+      {
+        path: 'servidor',
+        loadChildren: () => import('../servidor/servidor.module').then(m => m.ServidorPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'

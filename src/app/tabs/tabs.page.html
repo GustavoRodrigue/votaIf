@@ -3,25 +3,25 @@
 
 <ion-tabs *ngIf="nivel == 'admin'">
 
-  <ion-tab-bar slot="bottom" color="primary"   >
+  <ion-tab-bar slot="bottom" color="tertiary"   >
     <ion-tab-button tab="home">
       <ion-icon name="home"></ion-icon>
       <ion-label>Inicio</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="votacao" class="espaco1" >
+    <ion-tab-button tab="professor" class="espaco1" >
       <ion-icon name="checkmark-done"></ion-icon>
-      <ion-label>Votar</ion-label>
+      <ion-label>Professor</ion-label>
     </ion-tab-button>
     <ion-tab-button >
       <ion-icon name=""></ion-icon>
       <ion-label></ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="usuarios" class="espaco2">
+    <ion-tab-button tab="alunos" class="espaco2">
       <ion-icon name="people"></ion-icon>
-      <ion-label>Usuários</ion-label>
+      <ion-label>Alunos</ion-label>
      </ion-tab-button>
     <ion-tab-button tab="mais">
-      <ion-icon name="ellipsis-horizontal"></ion-icon>
+      <ion-icon name="menu"></ion-icon>
       <ion-label>Mais</ion-label>
     </ion-tab-button> 
     
@@ -31,7 +31,7 @@
 
 <ion-tabs *ngIf="nivel == 'aluno'">
 
-  <ion-tab-bar slot="bottom" color="primary"   >
+  <ion-tab-bar slot="bottom" color="tertiary"   >
     <ion-tab-button tab="home">
       <ion-icon name="home"></ion-icon>
       <ion-label>Inicio</ion-label>
@@ -53,9 +53,9 @@
  
 </ion-tabs>
 
-<ion-tabs *ngIf="nivel == 'aluno'">
+<ion-tabs *ngIf="nivel == 'servidor'">
 
-  <ion-tab-bar slot="bottom" color="primary"   >
+  <ion-tab-bar slot="bottom" color="tertiary"   >
     <ion-tab-button tab="home">
       <ion-icon name="home"></ion-icon>
       <ion-label>Inicio</ion-label>
@@ -68,9 +68,9 @@
       <ion-icon name=""></ion-icon>
       <ion-label></ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="usuarios" class="espaco2">
+    <ion-tab-button tab="alunos" class="espaco2">
       <ion-icon name="people"></ion-icon>
-      <ion-label>Usuários</ion-label>
+      <ion-label>Alunos</ion-label>
      </ion-tab-button>
     <ion-tab-button tab="mais">
       <ion-icon name="ellipsis-horizontal"></ion-icon>
@@ -86,7 +86,7 @@
   <ion-fab vertical="bottom" horizontal="center" slot="fixed"  >
       <ion-fab-button>
        
-        <ion-icon name="add"></ion-icon>
+        <ion-icon name="earth"></ion-icon>
       </ion-fab-button>
       
     </ion-fab>

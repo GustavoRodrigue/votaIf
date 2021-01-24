@@ -17,7 +17,7 @@ export class AddProfessorPage implements OnInit {
   senha: string = "";
   nivel: string = "professor";
   
-  status: string = "aguardando";
+  status: string = "Aguardando";
   limit: number = 15;
   start: number = 0;
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post,  public toastController: ToastController) { }
@@ -59,6 +59,7 @@ export class AddProfessorPage implements OnInit {
         nivel: this.nivel,
         status: this.status
       };
+      console.log(this.nivel)
       this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
       
         this.router.navigate(['/login']);

@@ -26,6 +26,9 @@ export class MaisPage implements OnInit {
   conta(){
     this.router.navigate(['/tabs/conta'])
   }
+  servidor(){
+    this.router.navigate(['/tabs/servidor'])
+  }
 
   
 }
