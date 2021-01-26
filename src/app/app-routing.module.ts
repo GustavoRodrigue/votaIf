@@ -114,6 +114,10 @@ const routes: Routes = [
     path: 'mostrar-alunos',
     loadChildren: () => import('./mostrar-alunos/mostrar-alunos.module').then( m => m.MostrarAlunosPageModule)
   },
+  {
+    path: 'mostrar-alunos/:id/:nome/:email/:nivel/:cpf/:status/:curso/:turma/:nomeCurso/:nomeTurma',
+    loadChildren: () => import('./mostrar-alunos/mostrar-alunos.module').then( m => m.MostrarAlunosPageModule)
+  },
  
 ];
 @NgModule({

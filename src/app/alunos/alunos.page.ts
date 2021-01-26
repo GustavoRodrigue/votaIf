@@ -17,6 +17,7 @@ export class AlunosPage implements OnInit {
   email: string ="";
   senha: string ="";
   nivel: string ="";
+  cpf: string = "";
   idCurso: string = "";
   nomeCurso: string = "";
   nomeTurma: string ="";
@@ -66,6 +67,7 @@ export class AlunosPage implements OnInit {
         nomeCurso: this.nomeCurso,
         nomeTruma: this.nomeTurma,
         nivel: this.nivel,
+        cpf: this.cpf,
         status: this.status,
         limit: this.limit,
         start: this.start
@@ -91,8 +93,8 @@ export class AlunosPage implements OnInit {
     this.router.navigate(['add-usuarios/' + id + '/' + nome + '/' + email + '/' + senha + '/' + curso + '/' + turma + '/' + status + '/' + nivel]);
   }
 
-  mostrar(id, nome, email, senha, nivel) {
-    this.router.navigate(['mostrar-usuarios/' + id + '/' + nome + '/' + email + '/' + senha + '/' + nivel]);
+  mostrar(id, nome, email, nivel, cpf, status, curso, turma, nomeCurso, nomeTurma) {
+    this.router.navigate(['mostrar-alunos/' + id + '/' + nome + '/' + email + '/' + nivel + '/' + cpf + '/' + '/' + status + '/' + curso + '/' + turma + '/' + nomeCurso + '/' + nomeTurma]);
   }
   aprovar(id){
     return new Promise(resolve => {
