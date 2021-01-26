@@ -14,41 +14,43 @@ export class ProfessorPage implements OnInit {
   limit: number = 15;
   start: number = 0;
   nome: string = "";
-  email: string ="";
-  senha: string ="";
-  nivel: string ="";
-  status : boolean ;
+  email: string = "";
+  senha: string = "";
+  nivel: string = "";
+  status: boolean;
   selecionado: string;
 
   constructor(private router: Router, private provider: Post, public toastController: ToastController, public alertController: AlertController) {
-    
-   }
+
+  }
   ngOnInit() {
     this.carregar();
   }
-  
+
   ionViewWillEnter() {
-    
+
     this.professores = [];
     this.start = 0;
     this.carregar();
   }
 
   segmentChanged(event) {
-      
+
     this.selecionado = event.target.value;
-   if(this.selecionado == "aguardando"){
-     this.status = false;
-     this.carregar();
-   } else if(this.selecionado == "aprovado"){
-     this.status = true;
-     this.carregar();
-   
-   }
-   
- }
+    if (this.selecionado == "aguardando") {
+      this.status = false;
+      this.carregar();
+    } else if (this.selecionado == "aprovado") {
+      this.status = true;
+      this.carregar();
 
+    }
 
+  }
+
+  mais() {
+    this.router.navigate(['/tabs/mais'])
+  }
 
   carregar() {
     return new Promise(resolve => {
@@ -65,19 +67,19 @@ export class ProfessorPage implements OnInit {
       };
       this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
         if (data['result'] == '0') {
-          
+
           this.ionViewWillEnter();
-        
+
         } else {
           for (let professor of data['result']) {
             this.professores.push(professor);
-            
-    
+
+
           }
         }
 
         resolve(true);
-        
+
       });
     });
   }
@@ -88,18 +90,18 @@ export class ProfessorPage implements OnInit {
   mostrar(id, nome, email, senha, nivel) {
     this.router.navigate(['mostrar-usuarios/' + id + '/' + nome + '/' + email + '/' + senha + '/' + nivel]);
   }
-  aprovar(id){
+  aprovar(id) {
     return new Promise(resolve => {
-      
-      let dados = {
-        requisicao : 'aprovar_professor',
-        id : id, 
-        nome: this.nome,
-        };
 
-        this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
-         this.ionViewWillEnter();
-        });
+      let dados = {
+        requisicao: 'aprovar_professor',
+        id: id,
+        nome: this.nome,
+      };
+
+      this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+        this.ionViewWillEnter();
+      });
     });
   }
 

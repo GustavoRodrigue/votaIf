@@ -1,13 +1,15 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+    <ion-buttons slot="start" (click)="mais()">
+      <ion-button >
+        <ion-icon  name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>Servidores</ion-title>
     
   </ion-toolbar>
   <ion-row color="medium">
-    <ion-segment (ionChange)="segmentChanged($event)" value="aguardando">
+    <ion-segment (ionChange)="segmentChanged($event)" value="aguardando" color="tertiary">
       <ion-segment-button value="aguardando">
         <ion-label>Aguardando</ion-label>
       </ion-segment-button>

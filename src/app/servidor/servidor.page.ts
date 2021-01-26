@@ -35,6 +35,9 @@ export class ServidorPage implements OnInit {
     this.carregar();
   }
 
+  mais(){
+    this.router.navigate(['/tabs/mais'])
+  }
   segmentChanged(event) {
       
     this.selecionado = event.target.value;

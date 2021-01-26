@@ -1,10 +1,5 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <ion-buttons slot="start" >
-      <ion-button >
-        <ion-icon  name="arrow-back"></ion-icon>
-      </ion-button>
-    </ion-buttons>
     <ion-title class="center">Mais</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,30 +7,37 @@
 <ion-content >
   
   <!-- Item as a Button -->
-  <ion-item class="content" button (click)="servidor()" color="tertiary">
-    <ion-icon name="albums"></ion-icon>
-    <ion-label>
-      Servidor
-    </ion-label>
-    <ion-icon name="chevron-forward"></ion-icon>
-  </ion-item>
   <ion-item class="content" button (click)="cursos()" color="tertiary">
     <ion-icon name="albums"></ion-icon>
-    <ion-label>
+    <ion-label class="largura">
       Cursos
     </ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
-  <ion-item class="content1" button (click)="turmas()" color="tertiary">
+  <ion-item  button (click)="servidor()" color="tertiary" *ngIf="nivel == 'admin'">
+    <ion-icon name="albums"></ion-icon>
+    <ion-label class="largura">
+      Servidor
+    </ion-label>
+    <ion-icon name="chevron-forward"></ion-icon>
+  </ion-item>
+  <!-- <ion-item  button (click)="cursos()" color="tertiary">
+    <ion-icon name="albums"></ion-icon>
+    <ion-label class="largura">
+      Cursos
+    </ion-label>
+    <ion-icon name="chevron-forward"></ion-icon>
+  </ion-item> -->
+  <ion-item button (click)="turmas()" color="tertiary">
     <ion-icon name="bookmarks"></ion-icon>
-    <ion-label>
+    <ion-label class="largura">
       Turmas
     </ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
-  <ion-item class="content1" button (click)="conta()" color="tertiary">
+  <ion-item  button (click)="conta()" color="tertiary">
     <ion-icon name="person"></ion-icon>
-    <ion-label>
+    <ion-label class="largura">
       Conta
     </ion-label>
     <ion-icon name="chevron-forward"></ion-icon>

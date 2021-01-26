@@ -1,5 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { ToastController } from '@ionic/angular';
+import { Post } from 'src/services/post';
 
 
 @Component({
@@ -9,11 +12,24 @@ import { Router } from '@angular/router';
 })
 export class MaisPage implements OnInit {
  
+  urlTurmas : string = "turmas";
+  urlCursos:string = "cursos";
+  nivel : string;
+  dadosLogin : any;
+  nome: string;
 
-  constructor(private router: Router) {
+
+  constructor(private storage: NativeStorage, private router: Router, private provider: Post, public toast: ToastController) {
 
   }
 
+  ionViewWillEnter(){
+    this.storage.getItem('session_storage').then((res)=>{
+      this.dadosLogin = res;
+      this.nivel = this.dadosLogin.nivel;
+     
+    }); 
+  }
   ngOnInit(){
 
   }

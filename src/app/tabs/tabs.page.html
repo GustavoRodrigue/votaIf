@@ -1,92 +1,94 @@
-
 <ion-content>
 
-<ion-tabs *ngIf="nivel == 'admin'">
+  <ion-tabs *ngIf="nivel == 'admin'">
 
-  <ion-tab-bar slot="bottom" color="tertiary"   >
-    <ion-tab-button tab="home">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Inicio</ion-label>
-    </ion-tab-button>
-    <ion-tab-button tab="professor" class="espaco1" >
-      <ion-icon name="checkmark-done"></ion-icon>
-      <ion-label>Professor</ion-label>
-    </ion-tab-button>
-    <ion-tab-button >
-      <ion-icon name=""></ion-icon>
-      <ion-label></ion-label>
-    </ion-tab-button>
-    <ion-tab-button tab="alunos" class="espaco2">
-      <ion-icon name="people"></ion-icon>
-      <ion-label>Alunos</ion-label>
-     </ion-tab-button>
-    <ion-tab-button tab="mais">
-      <ion-icon name="menu"></ion-icon>
-      <ion-label>Mais</ion-label>
-    </ion-tab-button> 
-    
-  </ion-tab-bar>
- 
-</ion-tabs>
+    <ion-tab-bar slot="bottom" color="tertiary">
+      <ion-tab-button tab="home">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="professor" class="espaco1">
+        <ion-icon name="checkmark-done"></ion-icon>
+        <ion-label>Professor</ion-label>
+      </ion-tab-button>
+      <ion-tab-button>
+        <ion-icon name=""></ion-icon>
+        <ion-label></ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="alunos" class="espaco2">
+        <ion-icon name="people"></ion-icon>
+        <ion-label>Alunos</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="mais">
+        <ion-icon name="menu"></ion-icon>
+        <ion-label>Mais</ion-label>
+      </ion-tab-button>
 
-<ion-tabs *ngIf="nivel == 'aluno'">
+    </ion-tab-bar>
 
-  <ion-tab-bar slot="bottom" color="tertiary"   >
-    <ion-tab-button tab="home">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Inicio</ion-label>
-    </ion-tab-button>
-    <ion-tab-button tab="votacao" class="espaco1" >
-      <ion-icon name="checkmark-done"></ion-icon>
-      <ion-label>Votar</ion-label>
-    </ion-tab-button>
-    <ion-tab-button >
-      <ion-icon name=""></ion-icon>
-      <ion-label></ion-label>
-    </ion-tab-button>
-    <ion-tab-button tab="conta" class="espaco1" >
-      <ion-icon name="person"></ion-icon>
-      <ion-label>Conta</ion-label>
-    </ion-tab-button>
-    
-  </ion-tab-bar>
- 
-</ion-tabs>
+  </ion-tabs>
 
-<ion-tabs *ngIf="nivel == 'servidor'">
+  <ion-tabs *ngIf="nivel == 'aluno'">
 
-  <ion-tab-bar slot="bottom" color="tertiary"   >
-    <ion-tab-button tab="home">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Inicio</ion-label>
-    </ion-tab-button>
-    <ion-tab-button tab="votacao" class="espaco1" >
-      <ion-icon name="checkmark-done"></ion-icon>
-      <ion-label>Votar</ion-label>
-    </ion-tab-button>
-    <ion-tab-button >
-      <ion-icon name=""></ion-icon>
-      <ion-label></ion-label>
-    </ion-tab-button>
-    <ion-tab-button tab="alunos" class="espaco2">
-      <ion-icon name="people"></ion-icon>
-      <ion-label>Alunos</ion-label>
-     </ion-tab-button>
-    <ion-tab-button tab="mais">
-      <ion-icon name="ellipsis-horizontal"></ion-icon>
-      <ion-label>Mais</ion-label>
-    </ion-tab-button> 
-    
-  </ion-tab-bar>
- 
-</ion-tabs>
-    
+    <ion-tab-bar slot="bottom" color="tertiary">
+      <ion-tab-button tab="home">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="votacao" class="espaco1">
+        <ion-icon name="checkmark-done"></ion-icon>
+        <ion-label>Votar</ion-label>
+      </ion-tab-button>
+      <ion-tab-button>
+        <ion-icon name=""></ion-icon>
+        <ion-label></ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="conta" class="espaco1">
+        <ion-icon name="person"></ion-icon>
+        <ion-label>Conta</ion-label>
+      </ion-tab-button>
+
+    </ion-tab-bar>
+
+  </ion-tabs>
+
+  <ion-tabs *ngIf="nivel == 'servidor'">
+
+    <ion-tab-bar slot="bottom" color="tertiary">
+      <ion-tab-button tab="home">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="votacao" class="espaco1">
+        <ion-icon name="checkmark-done"></ion-icon>
+        <ion-label>Votar</ion-label>
+      </ion-tab-button>
+      <ion-tab-button>
+        <ion-icon name=""></ion-icon>
+        <ion-label></ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="alunos" class="espaco2">
+        <ion-icon name="people"></ion-icon>
+        <ion-label>Alunos</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="mais">
+        <ion-icon name="menu"></ion-icon>
+        <ion-label>Mais</ion-label>
+      </ion-tab-button>
+
+    </ion-tab-bar>
+
+  </ion-tabs>
 
 
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed"  >
-      <ion-fab-button>
-       
-        <ion-icon name="earth"></ion-icon>
-      </ion-fab-button>
-      
-    </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button>
+
+      <ion-icon name="earth"></ion-icon>
+    </ion-fab-button>
+
+  </ion-fab>
+
+
+</ion-content>

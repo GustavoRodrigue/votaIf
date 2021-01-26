@@ -7,7 +7,7 @@
     
   </ion-toolbar>
   <ion-row >
-    <ion-segment (ionChange)="segmentChanged($event)" value="aguardando" >
+    <ion-segment (ionChange)="segmentChanged($event)" value="aguardando" color="tertiary" >
       <ion-segment-button value="aguardando">
         <ion-label>Aguardando</ion-label>
       </ion-segment-button>
@@ -33,15 +33,15 @@
 </ion-row> -->
 
 <ion-content >
-  <ion-list color="medium">
-    <ion-item-sliding *ngFor=" let aluno of alunos" color="medium">
+  <ion-list >
+    <ion-item-sliding *ngFor=" let aluno of alunos" >
       <ion-item-options side="start">
         <ion-item-option
           (click)="aprovar(aluno.id)">
           Aprovar
         </ion-item-option>
       </ion-item-options>
-      <ion-item color="medium">
+      <ion-item >
         <ion-label>{{aluno.nome }}</ion-label>|<small>{{aluno.nomeCurso}}</small>|<small>{{aluno.nomeTurma}}</small>
       </ion-item>
       <ion-item-options side="end">
