@@ -17,6 +17,8 @@ export class ProfessorPage implements OnInit {
   email: string = "";
   senha: string = "";
   nivel: string = "";
+  cpf: string = "";
+  telefone: string = "";
   status: boolean;
   selecionado: string;
 
@@ -61,6 +63,8 @@ export class ProfessorPage implements OnInit {
         email: this.email,
         senha: this.senha,
         nivel: this.nivel,
+        cpf: this.cpf,
+        telefone: this.telefone,
         status: this.status,
         limit: this.limit,
         start: this.start

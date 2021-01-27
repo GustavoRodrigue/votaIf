@@ -18,6 +18,8 @@ export class AddAlunosPage implements OnInit {
   senha: string = "";
   curso: number = 0;
   turma: number = 0;
+  cpf: string = "";
+  telefone: string = "";
   nomeCurso: string = "";
   nomeTurma: string = "";
   status: string = "aguardando";
@@ -28,9 +30,9 @@ export class AddAlunosPage implements OnInit {
 
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post,  public toastController: ToastController) { }
 
-  async mensagemSalvar() {
+  async mensagemSalvar(texto) {
     const toast = await this.toastController.create({
-      message: 'Salvo com Sucesso!',
+      message: texto,
       duration: 1000
     });
     toast.present();
@@ -50,6 +52,8 @@ export class AddAlunosPage implements OnInit {
       this.id = data.id;
       this.nome = data.nome;
       this.email = data.email;
+      this.cpf = data.cpf;
+      this.telefone = data.telefone;
       this.senha = data.senha;
       this.curso = data.curso;
       this.turma = data.turma;
@@ -73,14 +77,19 @@ export class AddAlunosPage implements OnInit {
         curso: this.curso,
         turma: this.turma,
         nivel: 'aluno',
+        cpf: this.cpf,
+        telefone: this.telefone,
         status: this.status
       };
-      console.log(this.nivel)
+     
       this.provider.dadosApi(dados, 'api.php').subscribe(data => {
       
+        this.mensagemSalvar(data['result']);
+        if(data['result'] == 'Salvo com Sucesso!'){
         this.router.navigate(['/login']);
-       // this.router.navigate(['tabs/usuarios']);
-        this.mensagemSalvar();
+       
+        }
+        
       });
     });
   }
@@ -90,6 +99,8 @@ export class AddAlunosPage implements OnInit {
         requisicao: 'editar',
         id: this.id,
         nome: this.nome,
+        cpf: this.cpf,
+        telefone: this.telefone,
         email: this.email,
         senha: this.senha,
         curso: this.curso,
@@ -100,7 +111,7 @@ export class AddAlunosPage implements OnInit {
       this.provider.dadosApi(dados, 'api.php').subscribe(data => {
         this.router.navigate(['/usuarios']);
         this.router.navigate(['tabs/usuarios']);
-        this.mensagemSalvar();
+    
       });
     });
   }

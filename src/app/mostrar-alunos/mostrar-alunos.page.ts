@@ -15,11 +15,13 @@ export class MostrarAlunosPage implements OnInit {
   nivel: string = "";
   idCurso: string = "";
   curso: string = "";
+  cpf: string = "";
   turma: string ="";
   idTurma: string = "";
   status : string ="";
   nomeCurso: string = "";
   nomeTurma: string ="";
+  telefone: string ="";
  
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post,  public toastController: ToastController) { }
 
@@ -28,6 +30,8 @@ export class MostrarAlunosPage implements OnInit {
       this.actRouter.params.subscribe((data: any) => {
         this.id = data.id;
         this.nome = data.nome;
+        this.cpf = data.cpf;
+        this.telefone = data.telefone;
         this.email = data.email;
         this.curso = data.curso;
         this.turma = data.turma;

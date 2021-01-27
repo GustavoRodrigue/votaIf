@@ -45,7 +45,7 @@
         <ion-label>{{aluno.nome }}</ion-label>|<small>{{aluno.nomeCurso}}</small>|<small>{{aluno.nomeTurma}}</small>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option (click)="mostrar(aluno.id, aluno.nome, aluno.email, aluno.nivel, aluno.status, aluno.curso, aluno.turma, aluno.nomeCurso, aluno.nomeTurma)" color="secondary">
+        <ion-item-option (click)="mostrar(aluno.id, aluno.nome, aluno.email, aluno.nivel, aluno.cpf, aluno.telefone, aluno.status, aluno.curso, aluno.turma, aluno.nomeCurso, aluno.nomeTurma)" color="secondary">
           Mostrar
         </ion-item-option>
         <ion-item-option (click)="presentAlertConfirm(aluno.id)" color="danger">

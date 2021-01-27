@@ -16,15 +16,16 @@ export class AddProfessorPage implements OnInit {
   email: string = "";
   senha: string = "";
   nivel: string = "professor";
-  
+  cpf: string = "";
+  telefone: string = "";
   status: string = "Aguardando";
   limit: number = 15;
   start: number = 0;
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post,  public toastController: ToastController) { }
 
-  async mensagemSalvar() {
+  async mensagemSalvar(texto) {
     const toast = await this.toastController.create({
-      message: 'Salvo com Sucesso!',
+      message: texto,
       duration: 1000
     });
     toast.present();
@@ -42,7 +43,8 @@ export class AddProfessorPage implements OnInit {
       this.nome = data.nome;
       this.email = data.email;
       this.senha = data.senha;
-    
+      this.cpf = data.cpf;
+      this.telefone = data.telefone;
     });
     
   }
@@ -57,14 +59,18 @@ export class AddProfessorPage implements OnInit {
         email: this.email,
         senha: this.senha,
         nivel: this.nivel,
-        status: this.status
+        status: this.status,
+        cpf: this.cpf,
+        telefone: this.telefone,
       };
       console.log(this.nivel)
       this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
       
+        this.mensagemSalvar(data['result']);
+        if(data['result'] == 'Salvo com Sucesso!'){
         this.router.navigate(['/login']);
-      
-        this.mensagemSalvar();
+       
+        }
       });
     });
   }
@@ -77,12 +83,14 @@ export class AddProfessorPage implements OnInit {
         email: this.email,
         senha: this.senha,
         nivel: this.nivel,
-        status: this.status
+        status: this.status,
+        cpf: this.cpf,
+        telefone: this.telefone
       };
       this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
         this.router.navigate(['/tela-inicial']);
       
-        this.mensagemSalvar();
+        // this.mensagemSalvar();
       });
     });
   }
