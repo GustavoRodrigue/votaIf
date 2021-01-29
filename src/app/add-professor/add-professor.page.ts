@@ -10,7 +10,7 @@ import { Post } from 'src/services/post';
 })
 export class AddProfessorPage implements OnInit {
 
-  
+
   id: string = "";
   nome: string = "";
   email: string = "";
@@ -21,7 +21,7 @@ export class AddProfessorPage implements OnInit {
   status: string = "Aguardando";
   limit: number = 15;
   start: number = 0;
-  constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post,  public toastController: ToastController) { }
+  constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
 
   async mensagemSalvar(texto) {
     const toast = await this.toastController.create({
@@ -33,7 +33,7 @@ export class AddProfessorPage implements OnInit {
   ionViewWillEnter() {
 
     this.start = 0;
-  
+
   }
 
   ngOnInit() {
@@ -46,33 +46,45 @@ export class AddProfessorPage implements OnInit {
       this.cpf = data.cpf;
       this.telefone = data.telefone;
     });
-    
+
   }
   telaInicial() {
     this.router.navigate(['/tela-inicial'])
   }
-  cadastrar() {
-    return new Promise(resolve => {
-      let dados = {
-        requisicao: 'add_professor',
-        nome: this.nome,
-        email: this.email,
-        senha: this.senha,
-        nivel: this.nivel,
-        status: this.status,
-        cpf: this.cpf,
-        telefone: this.telefone,
-      };
-      console.log(this.nivel)
-      this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
-      
-        this.mensagemSalvar(data['result']);
-        if(data['result'] == 'Salvo com Sucesso!'){
-        this.router.navigate(['/login']);
-       
-        }
+  async cadastrar() {
+    if (!this.nome || !this.email || !this.cpf || !this.telefone || !this.senha ) {
+
+      const toast = await this.toastController.create({
+        message: 'Aviso! Preencha todos os campos!',
+        duration: 2000,
+        color: 'warning'
       });
-    });
+      toast.present();
+
+      return;
+    } else {
+      return new Promise(resolve => {
+        let dados = {
+          requisicao: 'add_professor',
+          nome: this.nome,
+          email: this.email,
+          senha: this.senha,
+          nivel: this.nivel,
+          status: this.status,
+          cpf: this.cpf,
+          telefone: this.telefone,
+        };
+        console.log(this.nivel)
+        this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+
+          this.mensagemSalvar(data['result']);
+          if (data['result'] == 'Salvo com Sucesso!') {
+            this.router.navigate(['/login']);
+
+          }
+        });
+      });
+    }
   }
   editar() {
     return new Promise(resolve => {
@@ -89,12 +101,12 @@ export class AddProfessorPage implements OnInit {
       };
       this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
         this.router.navigate(['/tela-inicial']);
-      
+
         // this.mensagemSalvar();
       });
     });
   }
- 
+
 
 }
 

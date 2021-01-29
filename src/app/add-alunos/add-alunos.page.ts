@@ -24,11 +24,11 @@ export class AddAlunosPage implements OnInit {
   nomeTurma: string = "";
   status: string = "aguardando";
   nivel: string = "";
-  
+
   limit: number = 15;
   start: number = 0;
 
-  constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post,  public toastController: ToastController) { }
+  constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
 
   async mensagemSalvar(texto) {
     const toast = await this.toastController.create({
@@ -59,39 +59,50 @@ export class AddAlunosPage implements OnInit {
       this.turma = data.turma;
       this.nivel = data.nivel;
     });
-    
+
   }
   telaInicial() {
-    // this.router.navigate(['/tela-inicial'])
-    console.log(this.nivel)
-    console.log(this.status)
-    
+    this.router.navigate(['/tela-inicial'])
+   
+
   }
-  cadastrar() {
-    return new Promise(resolve => {
-      let dados = {
-        requisicao: 'add',
-        nome: this.nome,
-        email: this.email,
-        senha: this.senha,
-        curso: this.curso,
-        turma: this.turma,
-        nivel: 'aluno',
-        cpf: this.cpf,
-        telefone: this.telefone,
-        status: this.status
-      };
-     
-      this.provider.dadosApi(dados, 'api.php').subscribe(data => {
-      
-        this.mensagemSalvar(data['result']);
-        if(data['result'] == 'Salvo com Sucesso!'){
-        this.router.navigate(['/login']);
-       
-        }
-        
+  async cadastrar() {
+    if (!this.nome || !this.email || !this.cpf || !this.telefone || !this.senha || !this.curso || !this.turma ) {
+
+      const toast = await this.toastController.create({
+        message: 'Aviso! Preencha todos os campos!',
+        duration: 2000,
+        color: 'warning'
       });
-    });
+      toast.present();
+
+      return;
+    } else {
+      return new Promise(resolve => {
+        let dados = {
+          requisicao: 'add',
+          nome: this.nome,
+          email: this.email,
+          senha: this.senha,
+          curso: this.curso,
+          turma: this.turma,
+          nivel: 'aluno',
+          cpf: this.cpf,
+          telefone: this.telefone,
+          status: this.status
+        };
+
+        this.provider.dadosApi(dados, 'api.php').subscribe(data => {
+
+          this.mensagemSalvar(data['result']);
+          if (data['result'] == 'Salvo com Sucesso!') {
+            this.router.navigate(['/login']);
+
+          }
+
+        });
+      });
+    }
   }
   editar() {
     return new Promise(resolve => {
@@ -111,16 +122,16 @@ export class AddAlunosPage implements OnInit {
       this.provider.dadosApi(dados, 'api.php').subscribe(data => {
         this.router.navigate(['/usuarios']);
         this.router.navigate(['tabs/usuarios']);
-    
+
       });
     });
   }
-  carregarCursos(){
+  carregarCursos() {
     return new Promise(resolve => {
       this.cursos = [];
       let dados = {
         requisicao: 'listar_cursos',
-      
+
         nome: this.nomeCurso,
         limit: this.limit,
         start: this.start
@@ -158,12 +169,12 @@ export class AddAlunosPage implements OnInit {
         } else {
           for (let turma of data['result']) {
             this.turmas.push(turma);
-            
+
           }
         }
 
         resolve(true);
-        
+
       });
     });
   }
