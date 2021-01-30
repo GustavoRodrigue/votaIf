@@ -14,7 +14,7 @@ export class AddServidorPage implements OnInit {
   nome: string = "";
   email: string = "";
   senha: string = "";
-  nivel: string = "professor";
+  nivel: string = "servidor";
   cpf: string = "";
   telefone: string = "";
   status: string = "Aguardando";

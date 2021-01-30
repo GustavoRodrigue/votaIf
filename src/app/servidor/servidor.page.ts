@@ -89,9 +89,9 @@ export class ServidorPage implements OnInit {
   //   this.router.navigate(['add-usuarios/' + id + '/' + nome + '/' + email + '/' + senha + '/' + curso + '/' + turma + '/' + status + '/' + nivel]);
   // }
 
-  // mostrar(id, nome, email, senha, nivel) {
-  //   this.router.navigate(['mostrar-usuarios/' + id + '/' + nome + '/' + email + '/' + senha + '/' + nivel]);
-  // }
+  mostrar(id, nome, email, nivel, cpf, telefone, status) {
+    this.router.navigate(['mostrar-servidor/' + id + '/' + nome + '/' + email + '/' + nivel + '/' + cpf + '/' + telefone + '/' + status]);
+  }
   aprovar(id){
     return new Promise(resolve => {
       

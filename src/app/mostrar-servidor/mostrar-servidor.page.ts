@@ -4,23 +4,18 @@ import { ToastController } from '@ionic/angular';
 import { Post } from 'src/services/post';
 
 @Component({
-  selector: 'app-mostrar-alunos',
-  templateUrl: './mostrar-alunos.page.html',
-  styleUrls: ['./mostrar-alunos.page.scss'],
+  selector: 'app-mostrar-servidor',
+  templateUrl: './mostrar-servidor.page.html',
+  styleUrls: ['./mostrar-servidor.page.scss'],
 })
-export class MostrarAlunosPage implements OnInit {
+export class MostrarServidorPage implements OnInit {
+
   id: string = "";
   nome: string = "";
   email: string = "";
   nivel: string = "";
-  idCurso: string = "";
-  curso: string = "";
   cpf: string = "";
-  turma: string ="";
-  idTurma: string = "";
   status : string ="";
-  nomeCurso: string = "";
-  nomeTurma: string ="";
   telefone: string ="";
  
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post,  public toastController: ToastController) { }
@@ -33,37 +28,52 @@ export class MostrarAlunosPage implements OnInit {
         this.cpf = data.cpf;
         this.telefone = data.telefone;
         this.email = data.email;
-        this.curso = data.curso;
-        this.turma = data.turma;
         this.nivel = data.nivel;
         this.status = data.status;
-        this.nomeCurso = data.nomeCurso;
-        this.nomeTurma = data.nomeTurma;
+      
       });
       
   }
   ionViewWillEnter() {
     
   }
-
-  aprovar(id){
+  aprovarProfessor(id){
     return new Promise(resolve => {
       
       let dados = {
-        requisicao : 'aprovar_usuarios',
+        requisicao : 'aprovar_professor',
         id : id, 
         
         };
 
-        this.provider.dadosApi(dados, 'api.php').subscribe(data => {
-         this.alunos();
+        this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+         this.professor();
         });
     });
   }
 
-  alunos(){
-    // this.router.navigate(['/alunos'])
-    this.router.navigate(['/tabs/alunos'])
+  aprovarServidor(id){
+    return new Promise(resolve => {
+      
+      let dados = {
+        requisicao : 'aprovar_servidor',
+        id : id, 
+        
+        };
+
+        this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+         this.servidor();
+        });
+    });
+  }
+
+  servidor(){
+    // this.router.navigate(['/servidor'])
+    this.router.navigate(['/tabs/servidor'])
+  }
+  professor(){
+    // this.router.navigate(['/professor'])
+    this.router.navigate(['/tabs/professor'])
   }
 
 }

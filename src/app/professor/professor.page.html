@@ -45,12 +45,14 @@
       <ion-item>
         <ion-label>{{professor.nome }}</ion-label>|
       </ion-item>
-      <!-- <ion-item-options side="end">
-
+      <ion-item-options side="end">
+        <ion-item-option (click)="mostrar(professor.id, professor.nome, professor.email, professor.nivel, professor.cpf, professor.telefone, professor.status)" color="secondary">
+          Mostrar
+        </ion-item-option>
         <ion-item-option (click)="presentAlertConfirm(professor.id)" color="danger">
           Excluir
         </ion-item-option>
-      </ion-item-options> -->
+      </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 

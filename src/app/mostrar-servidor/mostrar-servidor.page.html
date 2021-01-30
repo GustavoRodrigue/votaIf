@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="tertiary" *ngIf="nivel === 'professor'">
+    <ion-buttons slot="start" (click)="professor()">
+      <ion-button >
+        <ion-icon  name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Dados do Professor</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="tertiary" *ngIf="nivel === 'servidor'">
+    <ion-buttons slot="start" (click)="servidor()">
+      <ion-button >
+        <ion-icon  name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Dados do técnico</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title >
+        <ion-icon name="square" color="danger" *ngIf="status === 'Aguardando'"></ion-icon>
+        <ion-icon name="square" color="success" *ngIf="status === 'Aprovado'"></ion-icon>
+        <b> {{status}}</b><br>
+        Nome: {{nome}}
+      </ion-card-title>
+      <ion-card-subtitle></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      Cpf: {{cpf}} <br>
+      Telefone: {{telefone}} <br>
+      Email: {{email}} <br>
+    </ion-card-content>
+    <ion-button icon-left size="medium" *ngIf="status === 'Aguardando' &&  nivel ==='professor'" expand="full" shape="round" color="primary" (click)="aprovarProfessor(id)"  tappable>
+      <ion-icon name="checkmark-circle"></ion-icon>
+      Aprovar1
+    </ion-button>
+    <ion-button icon-left size="medium" *ngIf="status === 'Aguardando' &&  nivel ==='servidor'" expand="full" shape="round" color="primary" (click)="aprovarServidor(id)"  tappable>
+      <ion-icon name="checkmark-circle"></ion-icon>
+      Aprovar
+    </ion-button>
+  </ion-card>
+</ion-content>
