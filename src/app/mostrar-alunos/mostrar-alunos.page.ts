@@ -62,7 +62,7 @@ export class MostrarAlunosPage implements OnInit {
   }
 
   alunos(){
-    // this.router.navigate(['/alunos'])
+    this.router.navigate(['/alunos'])
     this.router.navigate(['/tabs/alunos'])
   }
 
