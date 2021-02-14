@@ -62,7 +62,7 @@ export class AddAlunosPage implements OnInit {
 
   }
   telaInicial() {
-    this.router.navigate(['/tela-inicial'])
+    this.router.navigate(['/nivel-usuarios'])
    
 
   }

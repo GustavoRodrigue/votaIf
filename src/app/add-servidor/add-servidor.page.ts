@@ -48,7 +48,7 @@ export class AddServidorPage implements OnInit {
 
   }
   telaInicial() {
-    this.router.navigate(['/tela-inicial'])
+    this.router.navigate(['/nivel-usuarios'])
   }
   async cadastrar() {
     if (!this.nome || !this.email || !this.cpf || !this.telefone || !this.senha) {

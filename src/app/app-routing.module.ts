@@ -122,6 +122,11 @@ const routes: Routes = [
     path: 'mostrar-servidor/:id/:nome/:email/:nivel/:cpf/:telefone/:status',
     loadChildren: () => import('./mostrar-servidor/mostrar-servidor.module').then( m => m.MostrarServidorPageModule)
   },
+  {
+    path: 'tipo-votacao',
+    loadChildren: () => import('./tipo-votacao/tipo-votacao.module').then( m => m.TipoVotacaoPageModule)
+  },
+ 
  
 ];
 @NgModule({

@@ -1,38 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>nivel-usuarios</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
-  <div class="list-form">
-    <div >
-      <div class="logo"></div>
-     
-          <ion-img class="img-login center"  src="../assets/test.png"></ion-img>
-
-      
-    </div>
+  <div>
+    <section class="home">
+      <div >
+        <ion-icon class="img-nivel" src="assets/img-nivel.svg"></ion-icon>
+      </div>
+    </section>
     <div class="texto">
-      <h2>Atenção!</h2>
-      <p>Escolha a opção de acordo com sua função no campos!</p>
+      <p>Atenção!</p>
+      <p class="texto2">Escolha a opção de acordo com sua função no campos!</p>
 
     </div>
-    <div>
-      <ion-button icon-left size="medium" expand="block" shape="round" color="primary" (click)="alunos()"  tappable>     
+    <div class="btn01">
+      <ion-button   expand="full" (click)="alunos()" >     
         Alunos
       </ion-button>
-    </div><br/>
-    <div>
-      <ion-button icon-left size="medium" expand="block" shape="round" color="success" (click)="professor()"  tappable>
+    </div>
+    <div class="btn02">
+      <ion-button  expand="full"(click)="professor()" >
         Professor
       </ion-button>
-    </div><br/>
-    <div>
-      <ion-button icon-left size="medium" expand="block" shape="round" color="success" (click)="servidor()"  tappable> 
+    </div>
+    <div class="btn03">
+      <ion-button expand="full"  color="success" (click)="servidor()" > 
         Servidor
       </ion-button>
     </div>
-    
+    <div class="center">
+      <p class="texto3"><a href="/login">Já tenho cadastro</a></p>
+    </div>
   </div>
 </ion-content>

@@ -21,5 +21,8 @@ export class NivelUsuariosPage implements OnInit {
   servidor(){
     this.router.navigate(['/add-servidor']);
   }
+  login(){
+    this.router.navigate(['/login']);
+  }
 
 }

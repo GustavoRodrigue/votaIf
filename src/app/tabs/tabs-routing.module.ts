@@ -53,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/tela-inicial',
     pathMatch: 'full'
   }
 ];

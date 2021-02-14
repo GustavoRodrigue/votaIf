@@ -1,60 +1,50 @@
-<ion-content class="ion-padding animated fadeIn login auth-page">
+<ion-content>
   
-  <div class="auth-content">
+  
 
     <!-- Logo -->
-    <div padding-horizontal text-center  class="animated fadeInDown ">
-      <div class="logo"></div>
-      <h4 no-margin>
-          <ion-img class="img-login center"  src="../assets/01.png"></ion-img>
+    <section class="home">
+      <div >
+        <ion-icon class="img-logo" src="assets/img-logo.svg"></ion-icon>
+      </div>
+    </section>
 
-       </h4>
-    </div>
+    <section class="home2">
+      <div >
+        <ion-icon class="logo" src="assets/VotaIF.svg"></ion-icon>
+      </div>
+    </section>
 
     <!-- Login form -->
-    <div  class="list-form">
-      <ion-item no-padding class="animated fadeInUp">
-        <ion-label position="floating">
-          <ion-icon name="mail" item-start></ion-icon>
-          Usuário
-        </ion-label>
-        <ion-input color="light" type="text" [(ngModel)]="email"></ion-input>
-      </ion-item>
-      <p ion-text class="text08">
-        <ion-text color="warning">
-          Campo Requerido
-        </ion-text>
-      </p>
-
-      <ion-item no-padding class="animated fadeInUp">
-        <ion-label position="floating">
-          <ion-icon name="lock-closed" item-start></ion-icon>
-          Senha
-        </ion-label>
-        <ion-input color="light" type="password" [(ngModel)]="senha"></ion-input>
-      </ion-item>
-      <p ion-text color="warning" class="text08">
-        <ion-text color="warning">
-          Campo Requerido
-        </ion-text>
-        </p>
+    <section class="home3">
+      <div >
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input [(ngModel)]="email"></ion-input>
+        </ion-item>
       </div>
-
+      <div class="input">
+        <ion-item>
+          <ion-label position="floating" >Senha</ion-label>
+          <ion-input [(ngModel)]="senha"></ion-input>
+        </ion-item>
+      </div>
+      <div >
+        <ion-button class="botto" expand="full" color="tertiary" (click)="login()">Entrar</ion-button>
+      </div>
+      <div class="center">
+        <p class="texto">Ainda não possui conta? <a href="/nivel-usuarios">Registrar</a></p>
+      </div>
+    </section>
     
-    <br><br>
-
-    <div>
-      <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="login()"  tappable>
-        <ion-icon name="log-in"></ion-icon>
-        Login
-      </ion-button>
+   
 
      
 
-    </div>
+  
 
     <!-- Other links -->
   
 
-  </div>
+
 </ion-content>
