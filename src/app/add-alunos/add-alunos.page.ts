@@ -24,9 +24,12 @@ export class AddAlunosPage implements OnInit {
   nomeTurma: string = "";
   status: string = "aguardando";
   nivel: string = "";
-
+ 
   limit: number = 15;
   start: number = 0;
+
+
+
 
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
 
@@ -45,6 +48,9 @@ export class AddAlunosPage implements OnInit {
     this.carregarCursos();
     this.carregarTurmas();
   }
+
+
+  
 
   ngOnInit() {
     //recupera para editar

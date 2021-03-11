@@ -42,8 +42,7 @@ export class AddVotacaoPage implements OnInit {
     this.cursos = [];
     this.turmas = [];
     this.start = 0;
-    this.carregarCursos();
-    this.carregarTurmas();
+   
   }
 
   ngOnInit() {
@@ -52,14 +51,11 @@ export class AddVotacaoPage implements OnInit {
       this.id = data.id;
       this.nome = data.nome;
       this.descricao = data.descricao;
-      this.tipo = data.tipo;
       this.inicio = data.inicio;
       this.hora_inicio = data.hora_inicio;
       this.terminio = data.terminio;
       this.hora_terminio = data.hora_terminio;
-      this.curso = data.curso;
-      this.turma = data.turma;
-
+      this.tipo = data.tipo;
     });
 
   }
@@ -68,8 +64,8 @@ export class AddVotacaoPage implements OnInit {
   }
   async cadastrar() {
 
-    if (!this.nome || !this.descricao || !this.tipo || !this.inicio || !this.hora_inicio 
-          || !this.hora_terminio || !this.curso || !this.turma) {
+    if (!this.nome || !this.tipo || !this.inicio || !this.hora_inicio 
+          || !this.hora_terminio) {
 
       const toast = await this.toastController.create({
         message: 'Aviso! Preencha todos os campos!',
@@ -80,6 +76,8 @@ export class AddVotacaoPage implements OnInit {
 
       return;
     } else {
+
+      
       return new Promise(resolve => {
         let dados = {
           requisicao: 'add-votacao',
@@ -91,13 +89,19 @@ export class AddVotacaoPage implements OnInit {
           terminio: this.terminio,
           hora_terminio: this.hora_terminio,
           status: this.status,
-          curso: this.curso,
-          turma: this.turma
         };
         this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
 
-          this.router.navigate(['/usuarios']);
-          this.router.navigate(['tabs/votacao']);
+          if(this.tipo == 'eleicao'){
+            this.router.navigate(['/eleicao']);
+          }
+          if(this.tipo == 'eventos'){
+            this.router.navigate(['tabs/votacao']);
+          }
+          if(this.tipo == 'trabalhos'){
+            this.router.navigate(['tabs/votacao']);
+          }
+         
           this.mensagemSalvar();
         });
       });
@@ -115,12 +119,10 @@ export class AddVotacaoPage implements OnInit {
         hora_inicio: this.hora_inicio,
         terminio: this.terminio,
         hora_terminio: this.hora_terminio,
-        status: this.status,
-        curso: this.curso,
-        turma: this.turma
+        status: this.status
+        
       };
       this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
-        this.router.navigate(['/usuarios']);
         this.router.navigate(['tabs/votacao']);
         this.mensagemSalvar();
       });

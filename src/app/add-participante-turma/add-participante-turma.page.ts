@@ -4,58 +4,27 @@ import { ToastController } from '@ionic/angular';
 import { Post } from 'src/services/post';
 
 @Component({
-  selector: 'app-add-participante',
-  templateUrl: './add-participante.page.html',
-  styleUrls: ['./add-participante.page.scss'],
+  selector: 'app-add-participante-turma',
+  templateUrl: './add-participante-turma.page.html',
+  styleUrls: ['./add-participante-turma.page.scss'],
 })
-export class AddParticipantePage implements OnInit {
-  cursos = [];
-  
-  nomeCurso: string = "";
-  idCurso: string = "";
+export class AddParticipanteTurmaPage implements OnInit {
+
+
+  turmas = [];
+  idTurma: string;
+  isChecked = false;
+  nomeTurma: string = "";
   limit: number = 15;
   start: number = 0;
+
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
 
-
-  ionViewWillEnter() {
-
-    this.cursos = [];
-    this.start = 0;
-    this.carregarCursos();
-    
-  }
   ngOnInit() {
-  }
 
-  carregarCursos() {
-    return new Promise(resolve => {
-      this.cursos = [];
-      let dados = {
-        requisicao: 'listar_cursos',
-
-        nome: this.nomeCurso,
-        limit: this.limit,
-        start: this.start
-      };
-      this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
-        if (data['result'] == '0') {
-
-          this.ionViewWillEnter();
-
-        } else {
-          for (let curso of data['result']) {
-            this.cursos.push(curso);
-
-          }
-        }
-
-        resolve(true);
-      });
-    });
   }
   _todas(){
-    this.cursos.forEach(item => {
+    this.turmas.forEach(item => {
       if(item.isChecked){
         item.isChecked = false;
       }else{
@@ -66,23 +35,64 @@ export class AddParticipantePage implements OnInit {
 
   _getSelectItem(select) {
     console.log(select.isChecked)
-    this.idCurso = select.id;
+    this.idTurma = select.id;
     console.log(select.id)
 
-    this.cursos.forEach(item => {
+    this.turmas.forEach(item => {
       if (item.nome == select.nome) {
         item.isChecked = select.isChecked;
       }
     })
   }
+
+
+
+  ionViewWillEnter() {
+
+
+
+    this.turmas = [];
+    this.start = 0;
+
+    this.carregarTurmas();
+  }
+
+  carregarTurmas() {
+    return new Promise(resolve => {
+      this.turmas = [];
+      let dados = {
+        requisicao: 'listar_turmas',
+        nome: this.nomeTurma,
+        limit: this.limit,
+        start: this.start
+      };
+      this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+        if (data['result'] == '0') {
+
+          this.ionViewWillEnter();
+
+        } else {
+          for (let turma of data['result']) {
+            this.turmas.push(turma);
+
+
+          }
+        }
+
+        resolve(true);
+
+      });
+    });
+  }
+
   cadastrar(){
     console.log("tetste")
-    this.cursos.forEach(item => {
+    this.turmas.forEach(item => {
       if (item.isChecked) {
-        this.idCurso = item.id;
+        this.idTurma = item.id;
 
 
-        console.log(this.idCurso)
+        console.log(this.idTurma)
 
         return new Promise(resolve => {
           let dados = {
@@ -105,5 +115,4 @@ export class AddParticipantePage implements OnInit {
     });
     toast.present();
   }
-
 }

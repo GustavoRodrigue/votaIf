@@ -125,7 +125,27 @@ const routes: Routes = [
   {
     path: 'tipo-votacao',
     loadChildren: () => import('./tipo-votacao/tipo-votacao.module').then( m => m.TipoVotacaoPageModule)
+  },  {
+    path: 'editar-perfil',
+    loadChildren: () => import('./editar-perfil/editar-perfil.module').then( m => m.EditarPerfilPageModule)
   },
+  {
+    path: 'eleicao',
+    loadChildren: () => import('./eleicao/eleicao.module').then( m => m.EleicaoPageModule)
+  },
+  {
+    path: 'eventos',
+    loadChildren: () => import('./eventos/eventos.module').then( m => m.EventosPageModule)
+  },
+  {
+    path: 'add-usuario-votacao',
+    loadChildren: () => import('./add-usuario-votacao/add-usuario-votacao.module').then( m => m.AddUsuarioVotacaoPageModule)
+  },
+  {
+    path: 'add-participante-turma',
+    loadChildren: () => import('./add-participante-turma/add-participante-turma.module').then( m => m.AddParticipanteTurmaPageModule)
+  },
+
  
  
 ];

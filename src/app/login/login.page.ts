@@ -59,7 +59,6 @@ export class LoginPage implements OnInit {
         this.storage.setItem('session_storage', data['result']);
       //  this.router.navigate(['/tabs/home']);
         
-        
         if(data['result']['nivel'] == 'admin'){
           this.router.navigate(['/tabs/home']);
         }else if(data['result']['nivel'] == 'aluno'){

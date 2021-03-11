@@ -1,26 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Adicionar Cursos </ion-title>
+    <ion-title>Adicionar Participante</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
   <ion-list>
-
+    <ion-label>Turmas</ion-label>
     <ion-item>
-      <ion-label>Todos os cursos</ion-label>
+      <ion-label>Todas</ion-label>
       <ion-checkbox  slot="end"(click)="_todas()" ></ion-checkbox>
     </ion-item>
-    <ion-item *ngFor="let curso of cursos" >
+    <ion-item *ngFor="let turma of turmas" >
 
-      <ion-label>{{curso.nome}}</ion-label>
-      <ion-checkbox  slot="end"   [(ngModel)]="curso.isChecked" (click)="_getSelectItem(curso)"></ion-checkbox>
+      <ion-label>{{turma.nome}}</ion-label>
+      <ion-checkbox  slot="end" selected="false"  [(ngModel)]="turma.isChecked" (click)="_getSelectItem(turma)"></ion-checkbox>
     </ion-item>
   </ion-list>
   <ion-button *ngIf="!id" color="success" expand="block" (click)="cadastrar()">
     <ion-icon name="checkmark"></ion-icon>
     Salvar
   </ion-button>
-  
+
 </ion-content>

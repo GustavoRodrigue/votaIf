@@ -9,5 +9,9 @@
 </ion-header>
 
 <ion-content>
-
+  <div class="container">
+    <img [src]="imgURL" height="200" width="200" />
+    <ion-button (click)="getCamera()">From Camera</ion-button>
+    <ion-button (click)="getGallery()">From Gallery</ion-button>
+  </div>
 </ion-content>

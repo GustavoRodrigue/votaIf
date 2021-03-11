@@ -45,6 +45,12 @@ export class MaisPage implements OnInit {
   servidor(){
     this.router.navigate(['/tabs/servidor'])
   }
+  editarPerfil(){
+    this.router.navigate(['/tabs/editar-perfil'])
+  }
+  editarvot(){
+    this.router.navigate(['/add-usuario-votacao'])
+  }
 
   
 }
