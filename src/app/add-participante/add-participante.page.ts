@@ -10,11 +10,18 @@ import { Post } from 'src/services/post';
 })
 export class AddParticipantePage implements OnInit {
   cursos = [];
-  
-  nomeCurso: string = "";
-  idCurso: string = "";
+  votacoes = [];
+  participantes: any = [];
   limit: number = 15;
   start: number = 0;
+  idCurso: string = "";
+  nomeCurso: string = "";
+  nomeTurma: string ="";
+  idTurma: string = "";
+  status : boolean ;
+ 
+  idVotacao: string = "";
+  
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
 
 
@@ -23,11 +30,12 @@ export class AddParticipantePage implements OnInit {
     this.cursos = [];
     this.start = 0;
     this.carregarCursos();
-    
+
   }
   ngOnInit() {
   }
 
+ 
   carregarCursos() {
     return new Promise(resolve => {
       this.cursos = [];
@@ -54,14 +62,45 @@ export class AddParticipantePage implements OnInit {
       });
     });
   }
-  _todas(){
-    this.cursos.forEach(item => {
-      if(item.isChecked){
-        item.isChecked = false;
-      }else{
-        item.isChecked = true;
-      }
-    })
+  // _todas(){
+  //   this.cursos.forEach(item => {
+  //     if(item.isChecked){
+  //       item.isChecked = false;
+  //     }else{
+  //       item.isChecked = true;
+  //     }
+  //   })
+  // }
+
+  pegar(id, curso, votacao){
+    return new Promise(resolve => {
+      this.participantes = [];
+      let dados = {
+        requisicao: 'listar',
+        idCurso: this.idCurso,
+        idTurma: this.idTurma,
+        nomeCurso: this.nomeCurso,
+        nomeTruma: this.nomeTurma,
+        status: this.status,
+        limit: this.limit,
+        start: this.start
+      };
+      this.provider.dadosApi(dados, 'api.php').subscribe(data => {
+        if (data['result'] == '0') {
+          
+          this.ionViewWillEnter();
+        
+        } else {
+          for (let participante of data['result']) {
+            this.participantes.push(participante);
+            
+    
+          }
+        }
+
+        resolve(true);
+      });
+    });
   }
 
   _getSelectItem(select) {
@@ -70,32 +109,29 @@ export class AddParticipantePage implements OnInit {
     console.log(select.id)
 
     this.cursos.forEach(item => {
+      if (select.id == this.idCurso) {
+        item.isChecked = false;
+      }
       if (item.nome == select.nome) {
         item.isChecked = select.isChecked;
       }
     })
   }
-  cadastrar(){
-    console.log("tetste")
-    this.cursos.forEach(item => {
-      if (item.isChecked) {
-        this.idCurso = item.id;
+  cadastrar() {
+    return new Promise(resolve => {
+      let dados = {
+        requisicao: 'add-participante',
+        curso: this.idCurso
 
+      };
+      this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
+        this.router.navigate(['/add-participante-turma']);
+      });
+    });
 
-        console.log(this.idCurso)
+  }
+  avancar(id) {
 
-        return new Promise(resolve => {
-          let dados = {
-            requisicao: 'add-votacao',
-
-          };
-          this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
-            this.mensagemSalvar();
-          });
-        });
-      }
-
-    })
   }
 
   async mensagemSalvar() {

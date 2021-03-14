@@ -90,19 +90,19 @@ export class AddVotacaoPage implements OnInit {
           hora_terminio: this.hora_terminio,
           status: this.status,
         };
-        this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+        this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
 
-          if(this.tipo == 'eleicao'){
+          // if(this.tipo == 'eleicao'){
             this.router.navigate(['/eleicao']);
-          }
-          if(this.tipo == 'eventos'){
-            this.router.navigate(['tabs/votacao']);
-          }
-          if(this.tipo == 'trabalhos'){
-            this.router.navigate(['tabs/votacao']);
-          }
+          // }
+          // if(this.tipo == 'eventos'){
+          //   this.router.navigate(['tabs/votacao']);
+          // }
+          // if(this.tipo == 'trabalhos'){
+          //   this.router.navigate(['tabs/votacao']);
+          // }
          
-          this.mensagemSalvar();
+          
         });
       });
     }
@@ -123,7 +123,7 @@ export class AddVotacaoPage implements OnInit {
         
       };
       this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
-        this.router.navigate(['tabs/votacao']);
+        // this.router.navigate(['tabs/votacao']);
         this.mensagemSalvar();
       });
     });

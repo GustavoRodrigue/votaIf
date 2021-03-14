@@ -40,6 +40,9 @@ export class TabsPage {
   turmas() {
     this.router.navigate(['tabs/turmas'])
   }
+  votacao(){
+    this.router.navigate(['tabs/votacao'])
+  }
   
   teste(){
     console.log(this.nivel)

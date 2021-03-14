@@ -70,7 +70,7 @@ export class VotacaoPage implements OnInit {
         status: this.status
         };
 
-        this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+        this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
 
         if(data['result'] == '0') {
           this.ionViewWillEnter();
@@ -99,7 +99,7 @@ export class VotacaoPage implements OnInit {
         id : id, 
         };
 
-        this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+        this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
          this.ionViewWillEnter();
         });
     });
@@ -113,7 +113,7 @@ export class VotacaoPage implements OnInit {
         
         };
 
-        this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+        this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
          this.ionViewWillEnter();
         });
     });

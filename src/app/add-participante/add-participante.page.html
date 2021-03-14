@@ -8,19 +8,19 @@
   
   <ion-list>
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-label>Todos os cursos</ion-label>
       <ion-checkbox  slot="end"(click)="_todas()" ></ion-checkbox>
-    </ion-item>
+    </ion-item> -->
     <ion-item *ngFor="let curso of cursos" >
 
       <ion-label>{{curso.nome}}</ion-label>
       <ion-checkbox  slot="end"   [(ngModel)]="curso.isChecked" (click)="_getSelectItem(curso)"></ion-checkbox>
     </ion-item>
   </ion-list>
-  <ion-button *ngIf="!id" color="success" expand="block" (click)="cadastrar()">
-    <ion-icon name="checkmark"></ion-icon>
-    Salvar
+  <ion-button  color="success" expand="block" (click)="cadastrar()">
+    <ion-icon name="chevron-forward"></ion-icon>
+    Avançar
   </ion-button>
   
 </ion-content>

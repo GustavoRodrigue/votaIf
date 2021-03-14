@@ -125,7 +125,8 @@ const routes: Routes = [
   {
     path: 'tipo-votacao',
     loadChildren: () => import('./tipo-votacao/tipo-votacao.module').then( m => m.TipoVotacaoPageModule)
-  },  {
+  },
+  {
     path: 'editar-perfil',
     loadChildren: () => import('./editar-perfil/editar-perfil.module').then( m => m.EditarPerfilPageModule)
   },
@@ -143,6 +144,14 @@ const routes: Routes = [
   },
   {
     path: 'add-participante-turma',
+    loadChildren: () => import('./add-participante-turma/add-participante-turma.module').then( m => m.AddParticipanteTurmaPageModule)
+  },
+  {
+    path: 'participante',
+    loadChildren: () => import('./participante/participante.module').then( m => m.ParticipantePageModule)
+  },
+  {
+    path: 'add-participante-turma/:id/:curso/:votacao',
     loadChildren: () => import('./add-participante-turma/add-participante-turma.module').then( m => m.AddParticipanteTurmaPageModule)
   },
 

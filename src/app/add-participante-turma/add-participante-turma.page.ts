@@ -17,6 +17,8 @@ export class AddParticipanteTurmaPage implements OnInit {
   nomeTurma: string = "";
   limit: number = 15;
   start: number = 0;
+  public paticipante: any;
+
 
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
 
@@ -96,16 +98,19 @@ export class AddParticipanteTurmaPage implements OnInit {
 
         return new Promise(resolve => {
           let dados = {
-            requisicao: 'add-votacao',
-
+            requisicao: 'add-participante-turma',
+            id: null,
+            turma: this.idTurma,
           };
-          this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+          this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
             this.mensagemSalvar();
+           
           });
         });
       }
 
     })
+    this.router.navigate(['/participante']);
   }
 
   async mensagemSalvar() {

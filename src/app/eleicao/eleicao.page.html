@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Eleicao</ion-title>
+    <ion-title>Adicionar Candidatos</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,12 +9,14 @@
     Candidatos
   </ion-label>
   <ion-list>
-    <ion-item *ngFor="let usuario of usuarios">
-      <ion-label>{{usuario.nome}}</ion-label>
-      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
+    <ion-item *ngFor="let eleicao of eleicoes">
+      <ion-label>{{eleicao.nome}}</ion-label>
+      
     </ion-item>
   </ion-list>
-  <ion-item>
-    <ion-button expand="full" fill="outline" (click)="presentModal()" >Adicionar Candidatos</ion-button>
-  </ion-item>
+ 
+    <ion-button expand="full" (click)="addUsuarioVotacao()" >Adicionar Candidatos</ion-button>
+
+    <ion-button expand="full" (click)="avancar()" >Avançar</ion-button>
+  
 </ion-content>

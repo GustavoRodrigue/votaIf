@@ -1,46 +1,45 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+
     <ion-title>Lista de participantes</ion-title>
-    
+    <ion-buttons slot="end">
+      <ion-button (click)="voltar()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
-    <ion-row class="preto">
-    <ion-input placeholder="Buscar" [(ngModel)]="nome" type="search" (ionChange)="carregar()" ></ion-input>
-  
+  <ion-row class="preto">
+    <ion-input placeholder="Buscar" [(ngModel)]="nome" type="search" (ionChange)="carregar()"></ion-input>
+
   </ion-row>
 </ion-header>
 
 <ion-content>
-  <ion-list >
-    <ion-radio-group *ngFor="let usuario of usuarios" allowEmptySelection="true" >
-      <ion-item >
-        <ion-label>{{usuario.nome}} -- {{usuario.nivel}}</ion-label>
-        <ion-radio  [(ngModel)]="id" slot="start" value="usuario.id"></ion-radio>
-        
-      </ion-item>
-    </ion-radio-group>
-    
+  <ion-list>
+    <ion-item  *ngFor="let usuario of usuarios" >
 
-
-
-    <ion-button expand="full" fill="outline" (click)="adicionar()" >Adicionar Candidatos</ion-button>
+      <ion-label>{{usuario.nome}} -- {{usuario.nivel}}</ion-label>
+      <ion-checkbox  slot="end"   [(ngModel)]="usuario.isChecked" (click)="_getSelectItem(usuario)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  
+    <ion-button expand="full" (click)="adicionar()">Adicionar Candidatos</ion-button>
 
     <!-- <ion-item-sliding *ngFor="let usuario of usuarios">
       <ion-item>
           <ion-label>{{usuario.nome}} -- {{usuario.nivel}}</ion-label>
       </ion-item>
       </ion-item-sliding> -->
-    </ion-list>
 
-    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
-      </ion-refresher-content>
-    </ion-refresher>
 
-    <ion-infinite-scroll (ionInfinite)="loadData($event)">
-      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

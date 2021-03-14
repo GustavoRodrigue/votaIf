@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>participante</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-list  *ngFor=" let aluno of alunos">
+      <ion-item >
+        <ion-label>{{aluno.nome }}</ion-label>|<small>{{aluno.nomeCurso}}</small>|<small>{{aluno.nomeTurma}}</small>
+      </ion-item>
+     
+  </ion-list>
+  <ion-button expand="full" (click)="AddParticipante()" >adicionar Candidatos</ion-button>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
