@@ -11,58 +11,72 @@ import { Post } from 'src/services/post';
 export class ParticipantePage implements OnInit {
 
   participantes: any = [];
+  votantes: any=[];
   limit: number = 15;
   start: number = 0;
   idCurso: string = "";
   nomeCurso: string = "";
-  nomeTurma: string ="";
+  nomeTurma: string = "";
   idTurma: string = "";
-  status : boolean ;
-
+  status: boolean;
+  idUsuario: string = "";
+  nomeUsuario: string = "";
+  nivel: string = "";
+  usuario: number = 0;
+  sala: number = 0;
 
   constructor(private router: Router, private provider: Post, public toastController: ToastController, public alertController: AlertController) {
-    
-   }
+
+  }
   ngOnInit() {
     this.carregar();
+    this.carregarVotante();
   }
-  
+  voltar(){
+    this.router.navigate(['/eleicao'])
+   }
+
   ionViewWillEnter() {
-    
+    this.votantes = [];
     this.participantes = [];
     this.start = 0;
-    this.carregar();
+    if(this.sala == 1){
+      this.carregar();
+    }
+    if(this.usuario == 1){
+      this.carregarVotante();
+    }
   }
 
- 
 
- AddParticipante(){
-   this.router.navigate(['/add-participante']);
- }
 
-  carregar() {
+  AddParticipante() {
+    this.router.navigate(['/escolher-servidor-alunos']);
+  }
+  votacao() {
+    this.router.navigate(['/votacao']);
+  }
+  carregarVotante() {
     return new Promise(resolve => {
       this.participantes = [];
       let dados = {
-        requisicao: 'listar',
-        idCurso: this.idCurso,
-        idTurma: this.idTurma,
-        nomeCurso: this.nomeCurso,
-        nomeTruma: this.nomeTurma,
-        status: this.status,
+        requisicao: 'buscar-votantes',
+        id: this.idUsuario,
+        nome: this.nomeUsuario,
+        nivel: this.nivel,
         limit: this.limit,
         start: this.start
       };
-      this.provider.dadosApi(dados, 'api.php').subscribe(data => {
+      this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
         if (data['result'] == '0') {
-          
+          this.usuario = 1;
           this.ionViewWillEnter();
-        
+
         } else {
-          for (let participante of data['result']) {
-            this.participantes.push(participante);
+         
+          for (let votante of data['result']) {
+            this.votantes.push(votante);
             
-    
           }
         }
 
@@ -70,19 +84,50 @@ export class ParticipantePage implements OnInit {
       });
     });
   }
- 
-  aprovar(id){
+  carregar() {
     return new Promise(resolve => {
-      
+      this.participantes = [];
       let dados = {
-        requisicao : 'aprovar_usuarios',
-        id : id, 
-        
-        };
+        requisicao: 'buscar-participante',
+        idCurso: this.idCurso,
+        idTurma: this.idTurma,
+        nomeC: this.nomeCurso,
+        nomeT: this.nomeTurma,
+        status: this.status,
+        limit: this.limit,
+        start: this.start
+      };
+      this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
+        if (data['result'] == '0') {
+          this.sala = 1;
+          this.ionViewWillEnter();
 
-        this.provider.dadosApi(dados, 'api.php').subscribe(data => {
-         this.ionViewWillEnter();
-        });
+        } else {
+       
+          for (let participante of data['result']) {
+            this.participantes.push(participante);
+
+
+          }
+        }
+
+        resolve(true);
+      });
+    });
+  }
+
+  aprovar(id) {
+    return new Promise(resolve => {
+
+      let dados = {
+        requisicao: 'aprovar_usuarios',
+        id: id,
+
+      };
+
+      this.provider.dadosApi(dados, 'api.php').subscribe(data => {
+        this.ionViewWillEnter();
+      });
     });
   }
 

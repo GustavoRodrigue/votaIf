@@ -13,6 +13,7 @@ export class AddParticipanteTurmaPage implements OnInit {
 
   turmas = [];
   idTurma: string;
+curso: string =   "";
   isChecked = false;
   nomeTurma: string = "";
   limit: number = 15;
@@ -23,7 +24,11 @@ export class AddParticipanteTurmaPage implements OnInit {
   constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
 
   ngOnInit() {
-
+    this.curso =  this.actRouter.snapshot.paramMap.get('curso');
+    // this.actRouter.params.subscribe((data: any) => {
+    //   this.curso = data.curso;
+    // });
+    console.log(this.curso)
   }
   _todas(){
     this.turmas.forEach(item => {
@@ -58,6 +63,9 @@ export class AddParticipanteTurmaPage implements OnInit {
 
     this.carregarTurmas();
   }
+  voltar(){
+    this.router.navigate(['/add-participante'])
+  }
 
   carregarTurmas() {
     return new Promise(resolve => {
@@ -90,16 +98,16 @@ export class AddParticipanteTurmaPage implements OnInit {
   cadastrar(){
     console.log("tetste")
     this.turmas.forEach(item => {
+     
       if (item.isChecked) {
         this.idTurma = item.id;
-
-
+        
+        console.log("tetste")
         console.log(this.idTurma)
 
         return new Promise(resolve => {
           let dados = {
             requisicao: 'add-participante-turma',
-            id: null,
             turma: this.idTurma,
           };
           this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {

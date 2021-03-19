@@ -61,11 +61,10 @@
     </ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>tipo de votacao</ion-label>
+    <ion-label>Tipo de votacao</ion-label>
     <ion-select placeholder="Selecione" name="tipo" [(ngModel)]="tipo">
-      <ion-select-option [value]="eleicao"> Eleiçao</ion-select-option>
-      <ion-select-option [value]="trabalho">Trabalho</ion-select-option>
-      <ion-select-option [value]="eventos"> Eventos</ion-select-option>
+      <ion-select-option value="pessoas">Pessoas</ion-select-option>
+      <ion-select-option value="eventos"> Eventos e Trabalhos</ion-select-option>
     </ion-select>
     
   </ion-item>

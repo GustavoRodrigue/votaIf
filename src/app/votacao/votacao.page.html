@@ -4,12 +4,11 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Votação</ion-title>
-    <ion-buttons slot="tertiary" (click)="criarVotacao()">
+    <ion-buttons *ngIf="nivel != 'aluno' || nivel != 'servidor'" slot="primary" (click)="criarVotacao()">
       <ion-button>Novo
         <ion-icon slot="end" name="add"></ion-icon>
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
  
   <ion-row color="medium">
@@ -29,9 +28,9 @@
 
 
 <ion-content>
-  <ion-list  >
+  <ion-list >
     <ion-item-sliding *ngFor=" let votacao of votacoes" >
-      <ion-item-options side="start" >
+      <ion-item-options side="start">
         <ion-item-option (click)="motrar(votacao.id, votacao.nome, votacao.descricao, votacao.tipo,votacao.inicio, votacao.terminio,votacao.status, votacao.curso, votacao.turma)">
           Mostar
         </ion-item-option>

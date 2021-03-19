@@ -5,23 +5,24 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Adicionar Turmas</ion-title>
+    <ion-title>Escolhar Servidores para votar</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
+    
     <ion-item>
-      <ion-label>Selecionar todas</ion-label>
+      <ion-label>Selecionar todos</ion-label>
       <ion-checkbox  slot="end"(click)="_todas()" ></ion-checkbox>
     </ion-item>
-    <ion-item *ngFor="let turma of turmas" >
+    <ion-item *ngFor="let usuario of usuarios" >
 
-      <ion-label>{{turma.nome}}</ion-label>
-      <ion-checkbox  slot="end" selected="false"  [(ngModel)]="turma.isChecked" (click)="_getSelectItem(turma)"></ion-checkbox>
+      <ion-label>{{usuario.nome}} || {{usuario.nivel}}</ion-label>
+      <ion-checkbox  slot="end" selected="false"  [(ngModel)]="usuario.isChecked" (click)="_getSelectItem(usuario)"></ion-checkbox>
     </ion-item>
   </ion-list>
-  <ion-button *ngIf="!id" color="primary" expand="block" (click)="cadastrar()">
+  <ion-button *ngIf="!id" color="success" expand="block" (click)="cadastrar()">
     <ion-icon name="checkmark"></ion-icon>
     Adicionar
   </ion-button>

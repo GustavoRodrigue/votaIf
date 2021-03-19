@@ -1,18 +1,32 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>participante</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Participante</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
-  <ion-list  *ngFor=" let aluno of alunos">
-      <ion-item >
-        <ion-label>{{aluno.nome }}</ion-label>|<small>{{aluno.nomeCurso}}</small>|<small>{{aluno.nomeTurma}}</small>
-      </ion-item>
-     
-  </ion-list>
-  <ion-button expand="full" (click)="AddParticipante()" >adicionar Candidatos</ion-button>
+<ion-content>
+  <ion-list *ngFor=" let participante of participantes">
+    <ion-item>
+      <ion-label>{{participante.nomeCurso }} || {{participante.nomeTurma }} </ion-label>
+    </ion-item>
 
+  </ion-list>
+  <ion-list *ngFor=" let votante of votantes">
+    <ion-item>
+      <ion-label>{{votante.nome }} || {{votante.nivel }} </ion-label>
+    </ion-item>
+
+  </ion-list>
+  <div class="footer">
+    <ion-button expand="full" (click)="AddParticipante()">adicionar Candidatos</ion-button>
+
+    <ion-button expand="full" (click)="votacao()">Finalizar</ion-button>
+  </div>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
     </ion-refresher-content>

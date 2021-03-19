@@ -122,10 +122,7 @@ const routes: Routes = [
     path: 'mostrar-servidor/:id/:nome/:email/:nivel/:cpf/:telefone/:status',
     loadChildren: () => import('./mostrar-servidor/mostrar-servidor.module').then( m => m.MostrarServidorPageModule)
   },
-  {
-    path: 'tipo-votacao',
-    loadChildren: () => import('./tipo-votacao/tipo-votacao.module').then( m => m.TipoVotacaoPageModule)
-  },
+ 
   {
     path: 'editar-perfil',
     loadChildren: () => import('./editar-perfil/editar-perfil.module').then( m => m.EditarPerfilPageModule)
@@ -151,9 +148,29 @@ const routes: Routes = [
     loadChildren: () => import('./participante/participante.module').then( m => m.ParticipantePageModule)
   },
   {
-    path: 'add-participante-turma/:id/:curso/:votacao',
+    path: 'add-participante-turma/:curso',
     loadChildren: () => import('./add-participante-turma/add-participante-turma.module').then( m => m.AddParticipanteTurmaPageModule)
+  },  {
+    path: 'escolher-servidor-alunos',
+    loadChildren: () => import('./escolher-servidor-alunos/escolher-servidor-alunos.module').then( m => m.EscolherServidorAlunosPageModule)
   },
+  {
+    path: 'add-participante-servidor',
+    loadChildren: () => import('./add-participante-servidor/add-participante-servidor.module').then( m => m.AddParticipanteServidorPageModule)
+  },
+  {
+    path: 'escolher-tecnicos-servidor',
+    loadChildren: () => import('./escolher-tecnicos-servidor/escolher-tecnicos-servidor.module').then( m => m.EscolherTecnicosServidorPageModule)
+  },
+  {
+    path: 'add-participante-professor',
+    loadChildren: () => import('./add-participante-professor/add-participante-professor.module').then( m => m.AddParticipanteProfessorPageModule)
+  },
+  {
+    path: 'eventos-responsavel-votacao',
+    loadChildren: () => import('./eventos-responsavel-votacao/eventos-responsavel-votacao.module').then( m => m.EventosResponsavelVotacaoPageModule)
+  },
+
 
  
  

@@ -30,6 +30,9 @@ export class EleicaoPage implements OnInit {
     this.start = 0;
     this.carregar();
   }
+  voltar(){
+    this.router.navigate(['/tabs/votacao'])
+   }
 
   addUsuarioVotacao(){
     this.router.navigate(['/add-usuario-votacao']);
@@ -68,6 +71,30 @@ export class EleicaoPage implements OnInit {
       });
     });
   }
+
+
+   //atualizar o list view
+ doRefresh(event) {
+
+  setTimeout(() => {
+    this.ionViewWillEnter();
+    event.target.complete();
+  }, 500);
+}
+
+
+//barra de rolagem
+loadData(event) {
+
+  this.start += this.limit;
+
+  setTimeout(() => {
+    this.carregar().then(() => {
+      event.target.complete();
+    });
+
+  }, 500);
+}
 
 
 }

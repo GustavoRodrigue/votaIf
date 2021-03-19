@@ -34,7 +34,9 @@ export class AddParticipantePage implements OnInit {
   }
   ngOnInit() {
   }
-
+  voltar(){
+    this.router.navigate(['/escolher-servidor-alunos'])
+   }
  
   carregarCursos() {
     return new Promise(resolve => {
@@ -72,36 +74,11 @@ export class AddParticipantePage implements OnInit {
   //   })
   // }
 
-  pegar(id, curso, votacao){
-    return new Promise(resolve => {
-      this.participantes = [];
-      let dados = {
-        requisicao: 'listar',
-        idCurso: this.idCurso,
-        idTurma: this.idTurma,
-        nomeCurso: this.nomeCurso,
-        nomeTruma: this.nomeTurma,
-        status: this.status,
-        limit: this.limit,
-        start: this.start
-      };
-      this.provider.dadosApi(dados, 'api.php').subscribe(data => {
-        if (data['result'] == '0') {
-          
-          this.ionViewWillEnter();
-        
-        } else {
-          for (let participante of data['result']) {
-            this.participantes.push(participante);
-            
-    
-          }
-        }
-
-        resolve(true);
-      });
-    });
-  }
+  // pegar(curso){
+  //   curso = this.idCurso;
+  //   console.log(curso)
+  //   this.router.navigate(['/add-participante-turma/curso'])
+  // }
 
   _getSelectItem(select) {
     console.log(select.isChecked)
@@ -130,9 +107,7 @@ export class AddParticipantePage implements OnInit {
     });
 
   }
-  avancar(id) {
 
-  }
 
   async mensagemSalvar() {
     const toast = await this.toastController.create({

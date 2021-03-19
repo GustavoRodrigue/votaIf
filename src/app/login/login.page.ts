@@ -62,16 +62,14 @@ export class LoginPage implements OnInit {
         if(data['result']['nivel'] == 'admin'){
           this.router.navigate(['/tabs/home']);
         }else if(data['result']['nivel'] == 'aluno'){
-       
           this.router.navigate([ 'tabs/votacao']);
-
         }else if(data['result']['nivel'] == 'servidor'){
-          this.router.navigate([ 'tabs/usuarios']);
+          // this.router.navigate([ 'tabs/usuarios']);
           this.router.navigate([ 'tabs/votacao']);
 
         }else if(data['result']['nivel'] == 'professor'){
-          this.router.navigate([ '/usuarios']);
-          this.router.navigate([ '/votacao']);
+          // this.router.navigate([ '/usuarios']);
+          this.router.navigate([ 'tabs/votacao']);
         }
 
 

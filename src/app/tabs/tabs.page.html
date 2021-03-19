@@ -79,6 +79,33 @@
     </ion-tab-bar>
 
   </ion-tabs>
+  <ion-tabs *ngIf="nivel == 'professor'">
+
+    <ion-tab-bar slot="bottom" color="tertiary">
+      <ion-tab-button tab="home">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="votacao" class="espaco1">
+        <ion-icon name="checkmark-done"></ion-icon>
+        <ion-label>Votar</ion-label>
+      </ion-tab-button>
+      <ion-tab-button>
+        <ion-icon name=""></ion-icon>
+        <ion-label></ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="alunos" class="espaco2">
+        <ion-icon name="people"></ion-icon>
+        <ion-label>Alunos</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="mais">
+        <ion-icon name="menu"></ion-icon>
+        <ion-label>Mais</ion-label>
+      </ion-tab-button>
+
+    </ion-tab-bar>
+
+  </ion-tabs>
   <!-- <ion-buttons end>
     <button ion-button icon-only>
       <ion-icon name="earth"></ion-icon>
@@ -89,7 +116,7 @@
   </ion-button> -->
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed" >
-    <ion-fab-button (click)="votacao" >
+    <ion-fab-button (click)="votacao()" >
       
       <ion-icon name="earth" class="icon_central"></ion-icon>
     </ion-fab-button>

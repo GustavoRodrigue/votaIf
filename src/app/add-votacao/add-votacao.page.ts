@@ -4,6 +4,7 @@ import { Post } from '../../services/post';
 import { ToastController } from '@ionic/angular';
 import { Time } from '@angular/common';
 
+
 @Component({
   selector: 'app-add-votacao',
   templateUrl: './add-votacao.page.html',
@@ -92,9 +93,11 @@ export class AddVotacaoPage implements OnInit {
         };
         this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
 
-          // if(this.tipo == 'eleicao'){
+          if(this.tipo == 'pessoas'){
             this.router.navigate(['/eleicao']);
-          // }
+           } else if(this.tipo == 'eventos'){
+             console.log("eventos");
+           }
           // if(this.tipo == 'eventos'){
           //   this.router.navigate(['tabs/votacao']);
           // }
