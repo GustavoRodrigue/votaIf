@@ -96,7 +96,7 @@ export class AddVotacaoPage implements OnInit {
           if(this.tipo == 'pessoas'){
             this.router.navigate(['/eleicao']);
            } else if(this.tipo == 'eventos'){
-             console.log("eventos");
+            this.router.navigate(['/eventos-responsavel-votacao']);
            }
           // if(this.tipo == 'eventos'){
           //   this.router.navigate(['tabs/votacao']);

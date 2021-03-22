@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Escolhar o representante</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-row class="azul-primary padding-lateral">
+
+  <ion-input placeholder="Buscar" [(ngModel)]="nome" type="search" (input)="carregar()"></ion-input>
+
+
+  <ion-buttons (click)="carregar()">
+    <ion-button>
+      <ion-icon slot="end" name="search"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+</ion-row>
+
+<ion-content>
+
+  <ion-list>
+
+    <!-- <ion-item>
+      <ion-label>Todos os cursos</ion-label>
+      <ion-checkbox  slot="end"(click)="_todas()" ></ion-checkbox>
+    </ion-item> -->
+    <ion-item *ngFor="let usuario of usuarios">
+
+      <ion-label>{{usuario.nome}}</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="usuario.isChecked" (click)="_getSelectItem(usuario)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <div class="footer">
+    <ion-button color="primary" expand="block" (click)="cadastrar()">
+
+      Avançar
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-button>
+  </div>
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>

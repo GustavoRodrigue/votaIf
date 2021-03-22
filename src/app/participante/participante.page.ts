@@ -40,12 +40,12 @@ export class ParticipantePage implements OnInit {
     this.votantes = [];
     this.participantes = [];
     this.start = 0;
-    if(this.sala == 1){
+   
       this.carregar();
-    }
-    if(this.usuario == 1){
+  
+  
       this.carregarVotante();
-    }
+   
   }
 
 
@@ -54,7 +54,7 @@ export class ParticipantePage implements OnInit {
     this.router.navigate(['/escolher-servidor-alunos']);
   }
   votacao() {
-    this.router.navigate(['/votacao']);
+    this.router.navigate(['tabs/votacao']);
   }
   carregarVotante() {
     return new Promise(resolve => {
@@ -69,8 +69,8 @@ export class ParticipantePage implements OnInit {
       };
       this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
         if (data['result'] == '0') {
-          this.usuario = 1;
-          this.ionViewWillEnter();
+          // this.usuario = 1;
+          // this.ionViewWillEnter();
 
         } else {
          
@@ -99,8 +99,8 @@ export class ParticipantePage implements OnInit {
       };
       this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
         if (data['result'] == '0') {
-          this.sala = 1;
-          this.ionViewWillEnter();
+          // this.sala = 1;
+          // this.ionViewWillEnter();
 
         } else {
        

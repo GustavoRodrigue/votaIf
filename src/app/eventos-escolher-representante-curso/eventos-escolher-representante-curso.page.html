@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Escolhar o Curso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-row class="azul-primary padding-lateral">
+
+  <ion-input placeholder="Buscar" [(ngModel)]="nome" type="search" (input)="carregarCursos()"></ion-input>
+
+
+  <ion-buttons (click)="carregarCursos()">
+    <ion-button>
+      <ion-icon slot="end" name="search"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+</ion-row>
+
+<ion-content>
+
+  <div class="texto">
+    <p>Atenção!</p>
+    <p class="texto2">Escolha um titulo referente ao seu trabalho!</p>
+  
+  </div>
+  <ion-content >
+   
+    <ion-item>
+      <ion-label position="floating">
+        Titulo
+      </ion-label>
+      <ion-input [(ngModel)]="titulo"></ion-input>
+    </ion-item>
+  
+    <div class="texto">
+   
+      <p class="texto2">Escolha um curso!</p>
+    
+    </div>
+  
+  
+  <ion-list>
+
+    <!-- <ion-item>
+      <ion-label>Todos os cursos</ion-label>
+      <ion-checkbox  slot="end"(click)="_todas()" ></ion-checkbox>
+    </ion-item> -->
+    <ion-item *ngFor="let curso of cursos" >
+
+      <ion-label>{{curso.nome}}</ion-label>
+      <ion-checkbox  slot="end"   [(ngModel)]="curso.isChecked" (click)="_getSelectItem(curso)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <div >
+  <ion-button  color="primary" expand="block" (click)="cadastrar()">
+    <ion-icon name="chevron-forward"></ion-icon>
+    Avançar
+  </ion-button>
+</div>
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  
+</ion-content>

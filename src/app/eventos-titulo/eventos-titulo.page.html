@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Escolha uma opção</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="texto">
+  <p>Atenção!</p>
+  <p class="texto2">Escolha um titulo referente ao seu trabalho!</p>
+
+</div>
+<ion-content >
+ 
+  <ion-item>
+    <ion-label position="floating">
+      Titulo
+    </ion-label>
+    <ion-input [(ngModel)]="nome"></ion-input>
+  </ion-item>
+
+  <div class="footer" >
+    <ion-button  color="primary" expand="full" (click)="cadastrar()">
+      
+      Avançar
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-button>
+  </div>
+ 
+</ion-content>

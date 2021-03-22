@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Representante</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngFor=" let representante of representantes">
+    <!-- <ion-item>
+      <ion-label>{{representante.nome }} || {{representante.nomeC }} </ion-label>
+    </ion-item> -->
+
+
+
+    <ion-card>
+      <ion-card-header>
+
+        <ion-card-title>Titulo: {{representante.titulo}}</ion-card-title>
+        <ion-card-subtitle>Responsavel: {{representante.nome}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{representante.nomeC }}
+      </ion-card-content>
+    </ion-card>
+
+  
+
+  </ion-list>
+
+  <div class="footer">
+    <ion-button expand="full" (click)="AddRepresentante()">Adicionar Representante</ion-button>
+
+    <ion-button expand="full" (click)="avancar()">Avançar
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-button>
+  </div>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

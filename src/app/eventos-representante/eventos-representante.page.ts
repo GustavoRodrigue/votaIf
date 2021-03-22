@@ -4,22 +4,22 @@ import { ToastController, AlertController } from '@ionic/angular';
 import { Post } from 'src/services/post';
 
 @Component({
-  selector: 'app-eventos-responsavel-votacao',
-  templateUrl: './eventos-responsavel-votacao.page.html',
-  styleUrls: ['./eventos-responsavel-votacao.page.scss'],
+  selector: 'app-eventos-representante',
+  templateUrl: './eventos-representante.page.html',
+  styleUrls: ['./eventos-representante.page.scss'],
 })
-export class EventosResponsavelVotacaoPage implements OnInit {
-  responsaveis: any = [];
+export class EventosRepresentantePage implements OnInit {
+
+  representantes: any = [];
   limit: number = 15;
   start: number = 0;
   nome: string = "";
-  nivel: string = "";
+  curso: string = "";
   id: string = "";
   usuario:string="";
   votacao: string = "";
- 
-  prof: number = 0;
-  serv: number = 0;
+  nomeC: string = "";
+  titulo: string = "";
 
   teste: number = 0;
 
@@ -34,7 +34,7 @@ export class EventosResponsavelVotacaoPage implements OnInit {
    }
 
   ionViewWillEnter() {
-    this.responsaveis = [];
+    this.representantes = [];
   
     this.start = 0;
     if(this.teste = 1){
@@ -47,20 +47,22 @@ export class EventosResponsavelVotacaoPage implements OnInit {
 
 
   avancar(){
-    this.router.navigate(['/eventos-representante']);
+    this.router.navigate(['/participante']);
   }
-  AddResponsavel() {
-    this.router.navigate(['/eventos-escolher-prof-serv']);
+  AddRepresentante() {
+    this.router.navigate(['/eventos-escolher-representante-curso']);
   }
   carregar() {
     return new Promise(resolve => {
-      this.responsaveis = [];
+      this.representantes = [];
       let dados = {
-        requisicao: 'buscar-responsavel',
+        requisicao: 'buscar-representante',
         id: this.id,
         usuario: this.usuario,
         nome: this.nome,
-        nivel: this.nivel,
+        curso: this.curso,
+        nomeC: this.nomeC,
+        titulo: this.titulo,
         limit: this.limit,
         start: this.start
       };
@@ -71,8 +73,8 @@ export class EventosResponsavelVotacaoPage implements OnInit {
 
         } else {
           this.teste = 1;
-          for (let responsavel of data['result']) {
-            this.responsaveis.push(responsavel);
+          for (let representante of data['result']) {
+            this.representantes.push(representante);
 
 
           }
@@ -82,7 +84,7 @@ export class EventosResponsavelVotacaoPage implements OnInit {
       });
     });
   }
-  
+
 
     //atualizar o list view
     doRefresh(event) {

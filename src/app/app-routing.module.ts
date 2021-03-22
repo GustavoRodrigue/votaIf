@@ -170,6 +170,38 @@ const routes: Routes = [
     path: 'eventos-responsavel-votacao',
     loadChildren: () => import('./eventos-responsavel-votacao/eventos-responsavel-votacao.module').then( m => m.EventosResponsavelVotacaoPageModule)
   },
+  {
+    path: 'eventos-escolher-prof-serv',
+    loadChildren: () => import('./eventos-escolher-prof-serv/eventos-escolher-prof-serv.module').then( m => m.EventosEscolherProfServPageModule)
+  },
+  {
+    path: 'eventos-responsavel-servidor',
+    loadChildren: () => import('./eventos-responsavel-servidor/eventos-responsavel-servidor.module').then( m => m.EventosResponsavelServidorPageModule)
+  },
+  {
+    path: 'eventos-responsavel-professor',
+    loadChildren: () => import('./eventos-responsavel-professor/eventos-responsavel-professor.module').then( m => m.EventosResponsavelProfessorPageModule)
+  },
+  {
+    path: 'eventos-representante',
+    loadChildren: () => import('./eventos-representante/eventos-representante.module').then( m => m.EventosRepresentantePageModule)
+  },
+  {
+    path: 'eventos-escolher-representante',
+    loadChildren: () => import('./eventos-escolher-representante/eventos-escolher-representante.module').then( m => m.EventosEscolherRepresentantePageModule)
+  },
+  {
+    path: 'eventos-escolher-representante-curso',
+    loadChildren: () => import('./eventos-escolher-representante-curso/eventos-escolher-representante-curso.module').then( m => m.EventosEscolherRepresentanteCursoPageModule)
+  },
+  {
+    path: 'eventos-escolher-representante-turma',
+    loadChildren: () => import('./eventos-escolher-representante-turma/eventos-escolher-representante-turma.module').then( m => m.EventosEscolherRepresentanteTurmaPageModule)
+  },
+  {
+    path: 'eventos-titulo',
+    loadChildren: () => import('./eventos-titulo/eventos-titulo.module').then( m => m.EventosTituloPageModule)
+  },
 
 
  
