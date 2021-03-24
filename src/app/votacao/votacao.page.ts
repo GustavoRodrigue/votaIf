@@ -11,6 +11,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 })
 export class VotacaoPage implements OnInit {
 
+  id: string;
   curso: string;
   turmas: string;
   nome: string;
@@ -110,6 +111,7 @@ export class VotacaoPage implements OnInit {
       this.votacoes = [];
       let dados = {
         requisicao : 'listar_votacao',
+        id: this.id,
         curso : this.curso, 
         turma: this.turmas,
         cpf: this.cpfLogin,

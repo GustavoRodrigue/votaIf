@@ -69,7 +69,7 @@
     
   </ion-item>
 
-  <ion-button>Adicionar banner</ion-button>
+  <ion-button  (click)="presentActionSheet()">Adicionar foto</ion-button>
   <ion-button *ngIf="!id" color="success" expand="block" (click)="cadastrar()">
     <ion-icon name="checkmark"></ion-icon>
     Avancar

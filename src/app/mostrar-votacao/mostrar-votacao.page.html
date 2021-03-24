@@ -1,4 +1,13 @@
-
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>votação</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <ion-card>
     <ion-card-header>
@@ -16,12 +25,34 @@
       {{descricao}}
     </ion-card-content>
   </ion-card>
-  <ion-item *ngFor="let candidato of candidatos">
-    <ion-label>{{candidato.nome}}</ion-label>
-    <ion-checkbox slot="end" [(ngModel)]="candidato.isChecked" (click)="_getSelectItem(candidato)"></ion-checkbox>
-  </ion-item>
-  <ion-button color="success" expand="block" (click)="votar()">
+  <ion-list >
+    <ion-item *ngFor="let candidato of candidatos">
+      <ion-label>{{candidato.nome}}</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="candidato.isChecked" (click)="_getSelectItem(candidato)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+    <ion-item *ngFor="let representante of representantes">
+      <ion-label>{{representante.titulo}}</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="representante.isChecked" (click)="_getSelectItem(representante)"></ion-checkbox>
+    </ion-item>
+
+  <ion-button  *ngIf="tipo == 'pessoas'" color="primary" expand="block" (click)="votar()">
     <ion-icon name="chevron-forward"></ion-icon>
     Votar
   </ion-button>
+  <ion-button *ngIf="tipo == 'eventos'" color="primary" expand="block" (click)="votarEventos()">
+    <ion-icon name="chevron-forward"></ion-icon>
+    Votar 1
+  </ion-button>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

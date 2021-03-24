@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../../services/post';
-import { ToastController } from '@ionic/angular';
+import { ActionSheetController, ToastController } from '@ionic/angular';
 import { Time } from '@angular/common';
+import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { Time } from '@angular/common';
   styleUrls: ['./add-votacao.page.scss'],
 })
 export class AddVotacaoPage implements OnInit {
-
+  imagens: any = [];
   cursos = [];
   turmas = [];
   id: string = "";
@@ -29,7 +30,11 @@ export class AddVotacaoPage implements OnInit {
   nomeTurma: string = "";
   limit: number = 15;
   start: number = 0;
-  constructor(private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
+
+  cameraData: string = "";
+  base64image: string = "";
+  server:string;
+  constructor(private camera: Camera, public actionSheetController: ActionSheetController,private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
 
   async mensagemSalvar() {
     const toast = await this.toastController.create({
@@ -39,7 +44,7 @@ export class AddVotacaoPage implements OnInit {
     toast.present();
   }
   ionViewWillEnter() {
-
+    this.imagens = [];
     this.cursos = [];
     this.turmas = [];
     this.start = 0;
@@ -183,5 +188,125 @@ export class AddVotacaoPage implements OnInit {
       });
     });
   }
+
+
+
+  addimagem() {
+    return new Promise(resolve => {
+
+      let dados = {
+        requisicao: 'add_imagem',
+        imagem: this.cameraData,
+
+      };
+
+      this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
+        this.ionViewWillEnter();
+        
+        this.mensagemSalvar();
+      });
+    });
+  }
+
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Escolha uma opção',
+      cssClass: 'my-custom-class',
+      buttons: [{
+        text: 'Camera',
+        icon: 'camera',
+        handler: () => {
+          console.log('camera');
+          this.getCamera();
+        // if(this.imagem !=""){
+          //   this.addimagem(id)
+          // }
+        }
+      }, {
+        text: 'Galeria',
+        icon: 'image',
+        handler: () => {
+          console.log('Share clicked');
+          this.getGallery();
+          // if(this.imagem !=""){
+          //   this.addimagem(id)
+          // }
+          
+        }
+      }, {
+        text: 'Cancelar',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+          this.ionViewWillEnter();
+
+        }
+      }]
+    });
+   
+      await actionSheet.present();
+    }
+
+
+    getCamera() {
+    
+
+      const options: CameraOptions = {
+        quality: 100,
+        sourceType: this.camera.PictureSourceType.CAMERA,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        // allowEdit: true,
+      
+      }
+  
+      this.camera.getPicture(options)
+        .then((imageData) => {
+          this.cameraData = imageData;
+          this.base64image = 'data:image/jpeg;base64,' + imageData;
+        }, (error) => {
+          console.error(error);
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+
+       
+    }
+
+
+    getGallery() {
+      
+
+      const options: CameraOptions = {
+        quality: 100,
+        sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        // allowEdit: true,
+      
+      }
+  
+      this.camera.getPicture(options)
+        .then((imageData) => {
+          this.cameraData = imageData;
+          this.base64image = 'data:image/jpeg;base64,' + imageData;
+        }, (error) => {
+          console.error(error);
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+
+        
+    }
+
+
+    
+    
+
 
 }
