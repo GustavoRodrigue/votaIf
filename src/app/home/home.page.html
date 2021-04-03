@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-title>Home</ion-title>
-    
+
     <ion-avatar slot="end" (click)="conta()">
       <img class="avatar" src="../assets/images.png">
     </ion-avatar>
@@ -9,9 +9,174 @@
 </ion-header>
 
 <ion-content>
-  <div class="container">
-    <img [src]="imgURL" height="200" width="200" />
-    <ion-button (click)="getCamera()">From Camera</ion-button>
-    <ion-button (click)="getGallery()">From Gallery</ion-button>
-  </div>
+  <ion-card class="card" *ngIf="tipo == 'pessoas'">
+    <ion-item color="primary ">
+      <ion-icon name="receipt" color="light"></ion-icon>
+      <ion-label>Ultima votação em que você participou foi</ion-label>
+
+
+      <!-- <ion-label>{{status}}</ion-label> -->
+    </ion-item>
+
+
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label>{{nomeVotacao}} {{descricao}}</ion-label>
+      </ion-item>
+      <ion-list>
+
+        <ion-row *ngFor=" let eleicao of eleicoes">
+          <ion-col size="3">
+            <ion-label>{{eleicao.voto}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{eleicao.nomeUsuario}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <ion-card class="card" *ngIf="tipo == 'eventos'">
+    <ion-item color="primary ">
+      <ion-icon name="receipt" color="light"></ion-icon>
+      <ion-label>Ultima votação em que você participou foi</ion-label>
+    </ion-item>
+
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label>{{nomeVotacao}} {{descricao}}</ion-label>
+      </ion-item>
+      <ion-list>
+        <ion-row *ngFor="let representante of representantes">
+          <ion-col size="3">
+            <ion-label >{{representante.voto}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{representante.titulo}}{{representante.nomeUsuario}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <ion-card class="card">
+    <ion-item color="primary ">
+      <ion-icon name="receipt" color="light"></ion-icon>
+      <ion-label>Votação cadastrada</ion-label>
+
+    </ion-item>
+
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="3">
+          <ion-label class="texto-grande">{{totalVotacao}}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Todas as votações cadastradas</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          <ion-label class="texto-grande">{{totalEleicao}}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Todas as Eleicões cadastradas</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          <ion-label class="texto-grande">{{totalEventos}}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Todos os Eventos cadastrados</ion-label>
+        </ion-col>
+      </ion-row>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card">
+    <ion-item color="danger">
+      <ion-icon name="pie-chart" color="light"></ion-icon>
+      <ion-label>Status Votacao</ion-label>
+
+    </ion-item>
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="3">
+          <ion-label class="texto-grande">{{totalAberta}}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Todas as votações Abertas</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          <ion-label class="texto-grande">{{totalFechada}}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Todas as votações fechadas</ion-label>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card" *ngIf="nivel == 'professor' || nivel =='admin'">
+    <ion-item color="success" (click)="criadorVotacao()">
+      <ion-icon name="reader" color="light"></ion-icon>
+      <ion-label>Votacao que você criou</ion-label>
+      <ion-icon slot="end" name="enter" color="light"></ion-icon>
+
+    </ion-item>
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="3">
+          <ion-label class="texto-grande">{{totalCriadas}}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Todas as votações que você criou</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          <ion-label class="texto-grande">{{criadasEleicao}}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Todas as Eleições criadas</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          <ion-label class="texto-grande">{{criadasEventos}}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Todos os Eventos criados</ion-label>
+        </ion-col>
+      </ion-row>
+
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

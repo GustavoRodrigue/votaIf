@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>imagem-votacao</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-item  *ngFor=" let img of imagens" >
+  <ion-avatar>
+    <img src="{{server+img.imagem}}">
+  </ion-avatar>
+
+</ion-item>
+<div class="footer">
+  <ion-button expand="full" class="btn" (click)="presentActionSheet()">Adicionar imagem</ion-button>
+
+  <ion-button expand="full" class="btn" (click)="addimagem()">salvar</ion-button>
+</div>
+</ion-content>

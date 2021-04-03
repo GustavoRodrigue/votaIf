@@ -175,6 +175,22 @@ export class MostrarVotacaoPage implements OnInit {
       }
     })
   }
+  _getSelectRepre(select) {
+    console.log(select.isChecked)
+    this.idCandidato = select.id;
+    console.log(select.votacao)
+    console.log(select.id)
+    this.idVotacao = select.votacao;
+    this.representantes.forEach(item => {
+      if (select.id == this.idCandidato) {
+        item.isChecked = false;
+
+      }
+      if (item.nome == select.nome) {
+        item.isChecked = select.isChecked;
+      }
+    })
+  }
   carregar() {
 
     return new Promise(resolve => {
@@ -234,7 +250,7 @@ export class MostrarVotacaoPage implements OnInit {
         if (data['result'] == '0') {
           this.ionViewWillEnter();
         } else {
-          console.log('id', this.id)
+         
           for (let representante of data['result']) {
             this.representantes.push(representante);
           }

@@ -34,7 +34,7 @@
 
     <ion-item *ngFor="let representante of representantes">
       <ion-label>{{representante.titulo}}</ion-label>
-      <ion-checkbox slot="end" [(ngModel)]="representante.isChecked" (click)="_getSelectItem(representante)"></ion-checkbox>
+      <ion-checkbox slot="end" [(ngModel)]="representante.isChecked" (click)="_getSelectRepre(representante)"></ion-checkbox>
     </ion-item>
 
   <ion-button  *ngIf="tipo == 'pessoas'" color="primary" expand="block" (click)="votar()">

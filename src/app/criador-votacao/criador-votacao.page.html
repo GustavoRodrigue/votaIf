@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
+    <!-- <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Votação</ion-title>
+    </ion-buttons> -->
+    <ion-title>Votação que você criou</ion-title>
     <ion-buttons *ngIf="nivel != 'aluno' || nivel != 'servidor'" slot="primary" (click)="criarVotacao()">
       <ion-button>Novo
         <ion-icon slot="end" name="add"></ion-icon>
@@ -11,6 +11,17 @@
     </ion-buttons>
   </ion-toolbar>
 
+  <ion-row color="medium">
+    <ion-segment (ionChange)="segmentChanged($event)" value="aberta">
+      <ion-segment-button value="aberta">
+        <ion-label>Abertas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="encerrada">
+        <ion-label>Encerradas</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-row>
 </ion-header>
 
 
@@ -19,15 +30,17 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding *ngFor=" let votacao of votacoes">
+
       <ion-item-options side="start">
-        <ion-item-option
-          (click)="motrar(votacao.id, votacao.nome, votacao.descricao, votacao.tipo,votacao.inicio, votacao.terminio,votacao.status, votacao.curso, votacao.turma)">
-          Mostar
+        <ion-item-option (click)="encerrarVotacao(votacao.id)">
+          Encerrar
         </ion-item-option>
       </ion-item-options>
-      <ion-item>
+      <ion-item (click)="dadosVotacao(votacao.id)">
         <ion-label>{{votacao.nome}} </ion-label>
+        <ion-icon name="enter"></ion-icon>
       </ion-item>
+      
     </ion-item-sliding>
   </ion-list>
 

@@ -35,10 +35,6 @@ const routes: Routes = [
     loadChildren: () => import('./votacao/votacao.module').then( m => m.VotacaoPageModule)
   },
   {
-    path: 'criar-votacao',
-    loadChildren: () => import('./criar-votacao/criar-votacao.module').then( m => m.CriarVotacaoPageModule)
-  },
-  {
     path: 'curso',
     loadChildren: () => import('./curso/curso.module').then( m => m.CursoPageModule)
   },
@@ -150,7 +146,8 @@ const routes: Routes = [
   {
     path: 'add-participante-turma/:curso',
     loadChildren: () => import('./add-participante-turma/add-participante-turma.module').then( m => m.AddParticipanteTurmaPageModule)
-  },  {
+  },
+  {
     path: 'escolher-servidor-alunos',
     loadChildren: () => import('./escolher-servidor-alunos/escolher-servidor-alunos.module').then( m => m.EscolherServidorAlunosPageModule)
   },
@@ -202,6 +199,27 @@ const routes: Routes = [
     path: 'eventos-titulo',
     loadChildren: () => import('./eventos-titulo/eventos-titulo.module').then( m => m.EventosTituloPageModule)
   },
+  {
+    path: 'imagem-votacao',
+    loadChildren: () => import('./imagem-votacao/imagem-votacao.module').then( m => m.ImagemVotacaoPageModule)
+  },
+  {
+    path: 'criador-votacao',
+    loadChildren: () => import('./criador-votacao/criador-votacao.module').then( m => m.CriadorVotacaoPageModule)
+  },
+  {
+    path: 'relatorio-votacao',
+    loadChildren: () => import('./relatorio-votacao/relatorio-votacao.module').then( m => m.RelatorioVotacaoPageModule)
+  },
+  { 
+    path: 'relatorio-votacao/:id', 
+    loadChildren: () => import('./relatorio-votacao/relatorio-votacao.module').then( m => m.RelatorioVotacaoPageModule)
+  },  {
+    path: 'votacao-encerrada',
+    loadChildren: () => import('./votacao-encerrada/votacao-encerrada.module').then( m => m.VotacaoEncerradaPageModule)
+  },
+
+
 
 
  

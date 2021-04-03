@@ -51,6 +51,9 @@ export class MaisPage implements OnInit {
   editarvot(){
     this.router.navigate(['/add-usuario-votacao'])
   }
+  votacao(){
+    this.router.navigate(['tabs/criador-votacao'])
+  }
 
   
 }

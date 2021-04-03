@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Post } from '../../services/post';
-import { ToastController, AlertController } from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { Time } from '@angular/common';
+import { ToastController, AlertController } from '@ionic/angular';
+import { Post } from 'src/services/post';
 
 @Component({
-  selector: 'app-votacao',
-  templateUrl: './votacao.page.html',
-  styleUrls: ['./votacao.page.scss'],
+  selector: 'app-criador-votacao',
+  templateUrl: './criador-votacao.page.html',
+  styleUrls: ['./criador-votacao.page.scss'],
 })
-export class VotacaoPage implements OnInit {
+export class CriadorVotacaoPage implements OnInit {
 
   id: string;
   curso: string;
@@ -40,7 +39,7 @@ export class VotacaoPage implements OnInit {
   cpfLogin: string;
   dadosLogin: any;
   nivel: string;
-
+  idUsuario: string;
 
   dataAtual = new Date();
   dia = this.dataAtual.getDate();
@@ -57,9 +56,13 @@ export class VotacaoPage implements OnInit {
   ngOnInit() {
 
   }
-  criarVotacao() {
-    this.router.navigate(['/add-votacao']);
+
+  dadosVotacao(id){
+    this.router.navigate(['/relatorio-votacao/' + id ]);
   }
+  // criarVotacao() {
+  //   this.router.navigate(['/add-votacao']);
+  // }
 
   ionViewWillEnter() {
    
@@ -67,6 +70,7 @@ export class VotacaoPage implements OnInit {
     this.storage.getItem('session_storage').then((res) => {
       this.dadosLogin = res;
       this.cpfLogin = this.dadosLogin.cpf;
+      this.idUsuario = this.dadosLogin.id;
       this.nivel = this.dadosLogin.nivel;
 
     });
@@ -81,19 +85,19 @@ export class VotacaoPage implements OnInit {
   }
 
 
-  // segmentChanged(event) {
+  segmentChanged(event) {
 
-  //   this.selecionado = event.target.value;
-  //   if (this.selecionado == "aberta") {
-  //     this.status = false;
-  //     this.carregar();
+    this.selecionado = event.target.value;
+    if (this.selecionado == "aberta") {
+      this.status = false;
+      this.carregar();
     
-  //   } else if (this.selecionado == "encerrada") {
-  //     this.status = true;
-  //     this.carregar();
+    } else if (this.selecionado == "encerrada") {
+      this.status = true;
+      this.carregar();
 
-  //   }
-  // }
+    }
+  }
 
 
 
@@ -101,11 +105,12 @@ export class VotacaoPage implements OnInit {
     return new Promise(resolve => {
       this.votacoes = [];
       let dados = {
-        requisicao: 'listar_votacao',
+        requisicao: 'listar_votacao_criacao',
         id: this.id,
         curso: this.curso,
         turma: this.turmas,
         cpf: this.cpfLogin,
+        idUsuario: this.idUsuario,
         terminio: this.terminio,
         hora_terminio: this.hora_terminio,
         limit: this.limit,
@@ -132,39 +137,7 @@ export class VotacaoPage implements OnInit {
     
 
   }
-  encerrarAutomatico() {
-    return new Promise(resolve => {
-      this.votacoes = [];
-      let dados = {
-        requisicao: 'encerrar_votacao_aut',
-        id: this.id,
-        cpf: this.cpfLogin,
-        dataAtual: this.agora,
-        horaAtual: this.horas_agora,
-        limit: this.limit,
-        start: this.start,
-        status: this.status
-      };
-
-      this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
-
-        if (data['result'] == '0') {
-          this.ionViewWillEnter();
-        } else {
-          for (let vot of data['result']) {
-            this.vots.push(vot);
-            
-          }
-        }
-
-        resolve(true);
-
-      });
-    });
-
-    
-
-  }
+  
   
   motrar(id, nome, descricao, tipo, inicio, terminio, status, curso, turma) {
     this.router.navigate(['/mostrar-votacao/' + id + '/' + nome + '/' + descricao + '/' + tipo + '/' + inicio + '/' + terminio + '/' + status + '/' + curso + '/' + turma]);

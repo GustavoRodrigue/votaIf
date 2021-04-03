@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start" (click)="criadorVotacao()">
+      <ion-button >
+        <ion-icon  name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Dados do votação</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-segment (ionChange)="segmentChanged($event)" color="secondary" value="todas">
+  <ion-segment-button value="todas">
+    <ion-label>Todos</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="votou">
+    <ion-label>Votou</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="naoVotou">
+    <ion-label>Não votou</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+<ion-content>
+  <!-- <ion-card class="card" *ngFor=" let dado of dados" >
+   
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="3">
+          <ion-label class="texto-grande">{{dado.nome}}</ion-label>
+        </ion-col>
+       
+      </ion-row>
+    
+      
+    </ion-card-content>
+  </ion-card> -->
+
+  <ion-list>
+    <ion-item-sliding *ngFor=" let dado of dados">
+
+      <ion-item >
+        <ion-label>{{dado.nome}} </ion-label>
+        
+      </ion-item>
+      
+    </ion-item-sliding>
+  </ion-list>
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

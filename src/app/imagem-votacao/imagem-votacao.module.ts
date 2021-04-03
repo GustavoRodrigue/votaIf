@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CriarVotacaoPageRoutingModule } from './criar-votacao-routing.module';
+import { ImagemVotacaoPageRoutingModule } from './imagem-votacao-routing.module';
 
-import { CriarVotacaoPage } from './criar-votacao.page';
+import { ImagemVotacaoPage } from './imagem-votacao.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CriarVotacaoPageRoutingModule
+    ImagemVotacaoPageRoutingModule
   ],
-  declarations: [CriarVotacaoPage]
+  declarations: [ImagemVotacaoPage]
 })
-export class CriarVotacaoPageModule {}
+export class ImagemVotacaoPageModule {}

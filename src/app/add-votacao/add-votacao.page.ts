@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../../services/post';
-import { ActionSheetController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { Time } from '@angular/common';
-import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./add-votacao.page.scss'],
 })
 export class AddVotacaoPage implements OnInit {
-  imagens: any = [];
+
   cursos = [];
   turmas = [];
   id: string = "";
@@ -30,26 +30,46 @@ export class AddVotacaoPage implements OnInit {
   nomeTurma: string = "";
   limit: number = 15;
   start: number = 0;
+  dadosLogin: any;
+  idUsuario : string;
 
-  cameraData: string = "";
-  base64image: string = "";
-  server:string;
-  constructor(private camera: Camera, public actionSheetController: ActionSheetController,private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
 
-  async mensagemSalvar() {
-    const toast = await this.toastController.create({
-      message: 'Salvo com Sucesso!',
-      duration: 1000
-    });
-    toast.present();
-  }
+  constructor(private storage: NativeStorage ,private actRouter: ActivatedRoute, private router: Router, private provider: Post, public toastController: ToastController) { }
+
+ 
   ionViewWillEnter() {
-    this.imagens = [];
+
+    this.storage.getItem('session_storage').then((res) => {
+      this.dadosLogin = res;
+      this.idUsuario = this.dadosLogin.id;
+      
+
+    });
+
     this.cursos = [];
     this.turmas = [];
     this.start = 0;
-   
+  //  this.data()
+
   }
+  // data() {
+
+  //   var dataAtual = new Date();
+  //   var dia = dataAtual.getDate();
+  //   var mes = (dataAtual.getMonth() + 1);
+  //   var ano = dataAtual.getFullYear();
+  //   var horas = dataAtual.getHours();
+  //   var minutos = dataAtual.getMinutes();
+  //   var agora = (ano+'-0'+mes+'-'+dia);
+    
+
+  // //  var  dataInicio = this.inicio;
+    
+  // //   if(dataInicio.toString() <  agora.toString()){
+  // //     this.mensagemDataAtual();
+  // //   }
+  
+  // }
 
   ngOnInit() {
     //recupera para editar
@@ -69,9 +89,10 @@ export class AddVotacaoPage implements OnInit {
     this.router.navigate(['tabs/votacao'])
   }
   async cadastrar() {
+    
 
-    if (!this.nome || !this.tipo || !this.inicio || !this.hora_inicio 
-          || !this.hora_terminio) {
+    if (!this.nome || !this.tipo || !this.inicio || !this.hora_inicio
+      || !this.hora_terminio) {
 
       const toast = await this.toastController.create({
         message: 'Aviso! Preencha todos os campos!',
@@ -83,7 +104,30 @@ export class AddVotacaoPage implements OnInit {
       return;
     } else {
 
-      
+      var dataAtual = new Date();
+    var dia = dataAtual.getDate();
+    var mes = (dataAtual.getMonth() + 1);
+    var ano = dataAtual.getFullYear();
+    var horas = dataAtual.getHours();
+    var agora = (ano+'-0'+mes+'-'+dia);
+    
+
+   var  dataInicio = this.inicio;
+   var dataTerminio = this.terminio;
+   var horaInicio = this.hora_inicio;
+   var horaTerminio = this.hora_terminio;
+    
+    if(dataInicio.toString() <  agora.toString()){
+      this.mensagemDataAtual();
+    } else if(dataTerminio.toString() < agora.toString() || dataTerminio.toString() < dataInicio.toString() ){
+      const toast = await this.toastController.create({
+        message: 'Data final menor que data atual e data inicio!',
+        color: 'warning',
+        duration: 1000
+      });
+      toast.present();
+    }else{
+
       return new Promise(resolve => {
         let dados = {
           requisicao: 'add-votacao',
@@ -95,24 +139,26 @@ export class AddVotacaoPage implements OnInit {
           terminio: this.terminio,
           hora_terminio: this.hora_terminio,
           status: this.status,
+          idUsuario: this.idUsuario
         };
         this.provider.dadosApi(dados, 'apiVot.php').subscribe(data => {
 
-          if(this.tipo == 'pessoas'){
+          if (this.tipo == 'pessoas') {
             this.router.navigate(['/eleicao']);
-           } else if(this.tipo == 'eventos'){
+          } else if (this.tipo == 'eventos') {
             this.router.navigate(['/eventos-responsavel-votacao']);
-           }
+          }
           // if(this.tipo == 'eventos'){
           //   this.router.navigate(['tabs/votacao']);
           // }
           // if(this.tipo == 'trabalhos'){
           //   this.router.navigate(['tabs/votacao']);
           // }
-         
-          
+
+
         });
       });
+    }
     }
   }
   editar() {
@@ -128,7 +174,7 @@ export class AddVotacaoPage implements OnInit {
         terminio: this.terminio,
         hora_terminio: this.hora_terminio,
         status: this.status
-        
+
       };
       this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
         // this.router.navigate(['tabs/votacao']);
@@ -188,125 +234,28 @@ export class AddVotacaoPage implements OnInit {
       });
     });
   }
-
-
-
-  addimagem() {
-    return new Promise(resolve => {
-
-      let dados = {
-        requisicao: 'add_imagem',
-        imagem: this.cameraData,
-
-      };
-
-      this.provider.dadosApi(dados, 'apiAdm.php').subscribe(data => {
-        this.ionViewWillEnter();
-        
-        this.mensagemSalvar();
-      });
+  async mensagemSalvar() {
+    const toast = await this.toastController.create({
+      message: 'Salvo com Sucesso!',
+      duration: 1000
     });
+    toast.present();
   }
-
-  async presentActionSheet() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Escolha uma opção',
-      cssClass: 'my-custom-class',
-      buttons: [{
-        text: 'Camera',
-        icon: 'camera',
-        handler: () => {
-          console.log('camera');
-          this.getCamera();
-        // if(this.imagem !=""){
-          //   this.addimagem(id)
-          // }
-        }
-      }, {
-        text: 'Galeria',
-        icon: 'image',
-        handler: () => {
-          console.log('Share clicked');
-          this.getGallery();
-          // if(this.imagem !=""){
-          //   this.addimagem(id)
-          // }
-          
-        }
-      }, {
-        text: 'Cancelar',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-          this.ionViewWillEnter();
-
-        }
-      }]
+  async mensagemDataAtual() {
+    const toast = await this.toastController.create({
+      message: 'Data menor que data atual!',
+      color: 'warning',
+      duration: 1000
     });
-   
-      await actionSheet.present();
-    }
-
-
-    getCamera() {
-    
-
-      const options: CameraOptions = {
-        quality: 100,
-        sourceType: this.camera.PictureSourceType.CAMERA,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE,
-        // allowEdit: true,
-      
-      }
-  
-      this.camera.getPicture(options)
-        .then((imageData) => {
-          this.cameraData = imageData;
-          this.base64image = 'data:image/jpeg;base64,' + imageData;
-        }, (error) => {
-          console.error(error);
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-
-       
-    }
-
-
-    getGallery() {
-      
-
-      const options: CameraOptions = {
-        quality: 100,
-        sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE,
-        // allowEdit: true,
-      
-      }
-  
-      this.camera.getPicture(options)
-        .then((imageData) => {
-          this.cameraData = imageData;
-          this.base64image = 'data:image/jpeg;base64,' + imageData;
-        }, (error) => {
-          console.error(error);
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-
-        
-    }
-
-
-    
-    
-
+    toast.present();
+  }
+  async mensagemtime() {
+    const toast = await this.toastController.create({
+      message: 'Salvo com Sucesso!',
+      color: 'warning',
+      duration: 1000
+    });
+    toast.present();
+  }
 
 }

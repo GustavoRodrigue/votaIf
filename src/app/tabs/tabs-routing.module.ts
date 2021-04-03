@@ -45,6 +45,14 @@ const routes: Routes = [
         loadChildren: () => import('../servidor/servidor.module').then(m => m.ServidorPageModule)
       },
       {
+        path: 'criador-votacao',
+        loadChildren: () => import('../criador-votacao/criador-votacao.module').then(m => m.CriadorVotacaoPageModule)
+      },
+      {
+        path: 'imagem',
+        loadChildren: () => import('../imagem-votacao/imagem-votacao.module').then(m => m.ImagemVotacaoPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'
